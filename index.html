@@ -30,6 +30,7 @@
   <link rel="preload" as="image" href="/images/street.webp" fetchpriority="high">
   <link rel="preload" as="image" href="/images/wagon.webp" fetchpriority="high">
   <link rel="stylesheet" href="/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
 
   <script type="application/ld+json">
   {
@@ -66,6 +67,16 @@
   </script>
 </head>
 <body>
+<!-- Loading screen: only appears when the first screen takes longer than a moment; a crêpe is poured,
+     spread, browns, flips and is served, on a loop, until the hero photos and fonts are in. -->
+<div class="loader" id="loader" role="status">
+  <div class="pan" aria-hidden="true">
+    <div class="rozell"></div>
+    <div class="crepe"><div class="flip"><div class="side front"></div><div class="side back"></div></div></div>
+  </div>
+  <p class="loader-hi" aria-hidden="true">Bonjour!</p>
+  <p class="loader-text" data-i18n="loading">Even geduld, de crêpe ligt op de bakplaat…</p>
+</div>
 <a class="skip" href="#street-food" data-i18n="skip">Naar de inhoud</a>
 
 <header class="top">

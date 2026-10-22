@@ -1,12 +1,10 @@
 /* Peltier Crêpes & Galettes — language switch, mobile menu, calendar boxes, gallery, dock */
 (function () {
   'use strict';
-  document.documentElement.classList.add('js');
-
   const T = {
     nl: {
       _title: 'Peltier Crêpes & Galettes | Food stall & brunchcafé, Tilburg',
-      skip: 'Naar de inhoud',
+      skip: 'Naar de inhoud', loading: 'Even geduld, de crêpe ligt op de bakplaat…',
       'nav.street': 'Food Stall', 'nav.ouioui': 'Oui, Oui!', 'nav.gallery': 'Galerij', 'nav.about': 'Over ons', 'nav.contact': 'Contact',
       'hero.title': 'Peltier Crêpes & Galettes',
       'hero.tagline': 'Authentieke Franse pannenkoeken. Food stall & brunchcafé.',
@@ -43,7 +41,7 @@
     },
     en: {
       _title: 'Peltier Crêpes & Galettes | Food stall & brunch café, Tilburg',
-      skip: 'Skip to content',
+      skip: 'Skip to content', loading: 'One moment, your crêpe is on the griddle…',
       'nav.street': 'Food Stall', 'nav.ouioui': 'Oui, Oui!', 'nav.gallery': 'Gallery', 'nav.about': 'About us', 'nav.contact': 'Contact',
       'hero.title': 'Peltier Crêpes & Galettes',
       'hero.tagline': 'Authentic French pancakes. Food stall & brunch café.',
@@ -80,7 +78,7 @@
     },
     fr: {
       _title: 'Peltier Crêpes & Galettes | Food stall & brunch café, Tilburg',
-      skip: 'Aller au contenu',
+      skip: 'Aller au contenu', loading: 'Un instant, la crêpe est sur le bilig…',
       'nav.street': 'Food Stall', 'nav.ouioui': 'Oui, Oui!', 'nav.gallery': 'Galerie', 'nav.about': 'À propos', 'nav.contact': 'Contact',
       'hero.title': 'Peltier Crêpes & Galettes',
       'hero.tagline': 'Crêpes françaises authentiques. Food stall & brunch café.',
@@ -279,6 +277,28 @@
       .catch(function () { /* keep our own photo */ });
   }
 
+  /* Loading screen: gone as soon as the hero photos are in (or after 5s at most). It fades in only
+     after 500ms, so a quick load never shows it; once it has shown, it stays long enough for the
+     crêpe to be poured, cooked and flipped once (2.7s) so it does not flash. */
+  function initLoader() {
+    const el = document.getElementById('loader');
+    if (!el) return;
+    const t0 = performance.now();
+    const imgs = Array.from(document.querySelectorAll('.half img'));
+    const ready = Promise.all(imgs.map(function (img) {
+      return img.complete ? null : new Promise(function (r) { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); });
+    }));
+    Promise.race([ready, new Promise(function (r) { setTimeout(r, 5000); })]).then(function () {
+      const shown = performance.now() - t0;
+      if (shown < 500) { el.remove(); return; } // never became visible
+      setTimeout(function () {
+        el.style.animation = 'none'; el.style.opacity = '1'; // hold, then fade out (transition in CSS)
+        requestAnimationFrame(function () { requestAnimationFrame(function () { el.style.opacity = '0'; }); });
+        setTimeout(function () { el.remove(); }, 600);
+      }, Math.max(0, 2700 - shown));
+    });
+  }
+
   /* Mobile action dock: hidden on the landing screen, slides in once it has scrolled away */
   function initDock() {
     const trigger = document.querySelector('.hero');
@@ -301,6 +321,7 @@
     });
     const y = document.getElementById('year');
     if (y) y.textContent = String(new Date().getFullYear());
+    initLoader();
     initMenu();
     initMarquees();
     initReveals();
