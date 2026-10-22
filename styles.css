@@ -248,7 +248,7 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 /* Scroll reveals: fade up, staggered with --i (JS adds .in when the element enters the viewport) */
 .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .8s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i, 0) * 90ms); }
 .js .reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } .half, .half img, .spot, .btn { transition: none; } .ticker-track, .carousel-track { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } .half, .half img, .spot, .btn { transition: none; } .ticker-track { animation: none; } }
 
 /* Cards: identical rounded cards, one action each, always bottom-left */
 .cards { display: grid; gap: 1.25rem; align-items: stretch; }
@@ -294,20 +294,22 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
   .place-photo img, .place-map iframe { height: 420px; }
 }
 
-/* Carousel: the six crêpe photos as polaroids, drifting from left to right; pauses on hover/touch and
-   loops seamlessly (JS duplicates the set once; the keyframe moves the track by exactly one set). */
+/* Carousel: the six crêpe photos as polaroids, drifting from left to right (main.js moves the track and
+   makes it draggable). The box fades out at both sides and leaves room below for the shadows. */
 .gallery { background: var(--white); border-top: 3px solid var(--y-200); border-bottom: 3px solid var(--y-200); }
 .gallery-head { margin-bottom: 1.5rem; }
 .gallery-head h2 { margin-bottom: 0; }
-.carousel { overflow: hidden; padding: .75rem 0 1.25rem; -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
-.carousel-track { display: flex; gap: 1.1rem; width: max-content; animation: drift 40s linear infinite; }
-.carousel:hover .carousel-track, .carousel:focus-within .carousel-track, .carousel.paused .carousel-track { animation-play-state: paused; }
-@keyframes drift { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.carousel {
+  overflow: hidden; padding: 1rem 0 3rem; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.carousel.dragging { cursor: grabbing; }
+.carousel-track { display: flex; gap: 1.1rem; width: max-content; will-change: transform; }
 .carousel figure { /* the polaroid: white frame, thicker at the bottom */
   margin: 0; flex: 0 0 auto; width: min(66vw, 280px); padding: 12px 12px 44px; background: var(--white);
   border-radius: 3px; box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 12px 28px rgba(120, 48, 49, .16);
 }
-.carousel img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
+.carousel img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; pointer-events: none; -webkit-user-drag: none; }
 @media (min-width: 720px) { .carousel figure { width: 300px; } .carousel-track { gap: 1.4rem; } }
 
 /* About: the oval portrait takes the whole first column */

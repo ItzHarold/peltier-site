@@ -218,18 +218,62 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   }
 
-  /* Marquees (ticker + carousel): duplicate the set once so the loop is seamless; pause on touch */
+  /* Ticker: duplicate the words once so the CSS marquee loops seamlessly */
   function initMarquees() {
-    document.querySelectorAll('#ticker, .carousel-track').forEach(function (track) {
-      track.append.apply(track, Array.from(track.children).map(function (el) { return el.cloneNode(true); }));
-    });
+    const track = document.getElementById('ticker');
+    if (track) track.append.apply(track, Array.from(track.children).map(function (el) { return el.cloneNode(true); }));
+  }
+
+  /* Gallery: drifts left to right on its own; drag it (mouse, finger, trackpad) to look around.
+     Holding it stops it, letting go resumes the drift, a fling keeps its speed and eases back to the
+     drift speed, in either direction. One rAF loop owns the position; the set is repeated enough times
+     to cover any screen and the position wraps by one set width, so it never runs out. */
+  function initCarousel() {
     const carousel = document.getElementById('carousel');
-    if (carousel) {
-      carousel.addEventListener('pointerdown', function () { carousel.classList.add('paused'); });
-      ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (t) {
-        carousel.addEventListener(t, function () { carousel.classList.remove('paused'); });
-      });
-    }
+    const track = carousel && carousel.querySelector('.carousel-track');
+    if (!track) return;
+    const DRIFT = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 45; // px/s
+    const items = Array.from(track.children);
+    let setWidth = 0, copies = 1, x = 0, v = DRIFT, dragging = false, lastT = 0, lastX = 0, samples = [];
+    const clone = function () { items.forEach(function (el) { track.appendChild(el.cloneNode(true)); }); copies++; };
+    const layout = function () {
+      if (copies < 2) clone();
+      setWidth = track.children[items.length].offsetLeft - items[0].offsetLeft; // one set, gaps included
+      const need = Math.max(3, Math.ceil(window.innerWidth / setWidth) + 2);
+      while (copies < need) clone();
+    };
+    const wrap = function () { if (x > -setWidth) x -= setWidth; else if (x <= -2 * setWidth) x += setWidth; };
+    const frame = function (t) {
+      const dt = Math.min((t - lastT) / 1000, .05); lastT = t;
+      if (!dragging) { v += (DRIFT - v) * (1 - Math.exp(-dt / .9)); x += v * dt; }
+      wrap();
+      track.style.transform = 'translateX(' + x + 'px)';
+      requestAnimationFrame(frame);
+    };
+    carousel.addEventListener('pointerdown', function (e) {
+      dragging = true; v = 0; lastX = e.clientX; samples = [[e.clientX, performance.now()]];
+      carousel.setPointerCapture(e.pointerId); carousel.classList.add('dragging');
+    });
+    carousel.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      x += e.clientX - lastX; lastX = e.clientX;
+      const now = performance.now(); samples.push([e.clientX, now]);
+      while (samples.length > 2 && now - samples[0][1] > 120) samples.shift();
+    });
+    const release = function () {
+      if (!dragging) return;
+      dragging = false; carousel.classList.remove('dragging');
+      const a = samples[0], b = samples[samples.length - 1], dt = (b[1] - a[1]) / 1000;
+      v = dt > 0.016 ? Math.max(-3000, Math.min(3000, (b[0] - a[0]) / dt)) : 0; // fling speed, or a plain stop
+    };
+    carousel.addEventListener('pointerup', release);
+    carousel.addEventListener('pointercancel', release);
+    carousel.addEventListener('wheel', function (e) { // trackpad sideways swipe
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); x -= e.deltaX; }
+    }, { passive: false });
+    layout(); x = -setWidth;
+    window.addEventListener('resize', function () { const ratio = x / setWidth; layout(); x = ratio * setWidth; });
+    requestAnimationFrame(frame);
   }
 
   /* Scroll reveals + header shadow */
@@ -325,6 +369,7 @@
     initLoader();
     initMenu();
     initMarquees();
+    initCarousel();
     initReveals();
     initDock();
     loadPlace();
