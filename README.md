@@ -22,6 +22,7 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 | `api/agenda.js` + `lib/ics.js` | next three one-off events from Simon's calendar feed (dependency-free iCalendar parser) |
 | `api/place.js` | Google Business listing (photo, rating) through the Places API (New) |
 | `photos/` | the six crêpe photos from the Figma "Crêpes" page (carousel) |
+| `assets/hero-*.webp` | the two landing photos (wagon at dusk, Simon at the stall), pre-cropped; rename on change (cached a year) |
 | `assets/wagon.webp` | the wagon photo used until the Google listing photo takes over |
 | `menu/` | `oui-oui-en.pdf` + `oui-oui-nl.pdf` (the brunch menu, served by language; French gets English); drop `street-food.pdf` here and the Food Stall "Check the menu" button appears |
 
