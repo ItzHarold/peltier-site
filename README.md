@@ -19,11 +19,11 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 | --- | --- |
 | `index.html`, `styles.css`, `main.js` | the page; NL/EN/FR strings live in the `T` object in `main.js` |
 | `build.js` | copies files into `public/`, generates images, includes menu PDFs when present |
-| `api/agenda.js` + `lib/ics.js` | next event from Simon's calendar feed (dependency-free iCalendar parser) |
+| `api/agenda.js` + `lib/ics.js` | next three one-off events from Simon's calendar feed (dependency-free iCalendar parser) |
 | `api/place.js` | Google Business listing (photo, rating) through the Places API (New) |
 | `photos/` | the six crêpe photos from the Figma "Crêpes" page (carousel) |
 | `assets/wagon.webp` | the wagon photo used until the Google listing photo takes over |
-| `menu/` | drop `street-food.pdf` and/or `oui-oui.pdf` here and the "Bekijk de kaart" buttons appear |
+| `menu/` | drop `street-food.pdf` and/or `oui-oui.pdf` here and the "Check the menu" / "Discover our menu" buttons appear |
 
 ## Environment variables (Vercel → Settings → Environment Variables)
 
@@ -35,11 +35,13 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 
 ## Simon's calendar
 
-The street-food section shows one card: the next event, or the one happening now, or the most
-recent one when nothing is planned. Per event:
+The Food Stall section lists the weekly spots itself (Saturday market, The City on Mondays) and shows
+"Coming up": the next three one-off events from the calendar, or the most recent ones when nothing is
+planned. Per event:
 
+- Repeating events (the weekly series) are never shown; one-off events are.
 - **Location** field → shown as the address, plus a Route button.
 - **Notes** field → everything after a line starting with `Site:` is shown (max 400 chars); the rest stays private.
-- Titles starting with `[` or `(` (e.g. `[cancelled] …`) are never shown.
+- Titles starting with `[` or `(` (e.g. `[cancelled] …`, `[MAYBE] …`) are never shown.
 
 Feed is cached on the CDN for 15 minutes; the listing for a day; listing photos for a week.

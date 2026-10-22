@@ -1,122 +1,119 @@
-/* Peltier Crêpes & Galettes — language switch, mobile menu, calendar card, gallery, dock */
+/* Peltier Crêpes & Galettes — language switch, mobile menu, calendar boxes, gallery, dock */
 (function () {
   'use strict';
   document.documentElement.classList.add('js');
 
   const T = {
     nl: {
-      _title: 'Peltier Crêpes & Galettes | Street food & Oui Oui brunch place, Tilburg',
+      _title: 'Peltier Crêpes & Galettes | Food stall & brunchcafé, Tilburg',
       skip: 'Naar de inhoud',
-      'nav.street': 'Street food', 'nav.ouioui': 'Oui Oui', 'nav.gallery': 'Galerij', 'nav.about': 'Over ons', 'nav.contact': 'Contact',
+      'nav.street': 'Food Stall', 'nav.ouioui': 'Oui, Oui!', 'nav.gallery': 'Galerij', 'nav.about': 'Over ons', 'nav.contact': 'Contact',
       'hero.title': 'Peltier Crêpes & Galettes',
-      'hero.tagline': 'Franse crêpes en galettes uit Tilburg. Op straat en in onze wagon.',
-      'hero.street': 'Street food', 'hero.streetSub': 'Markten, evenementen & catering', 'hero.streetTag': '01 · Op straat', 'hero.cta': 'Ontdek',
+      'hero.tagline': 'Authentieke Franse pannenkoeken. Food stall & brunchcafé.',
+      'hero.street': 'Food Stall', 'hero.streetSub': 'Markten, evenementen & catering', 'hero.cta': 'Ontdek',
       'hero.streetAlt': 'Simon bakt crêpes op zijn kraam terwijl bezoekers wachten',
-      'hero.ouioui': 'Oui Oui', 'hero.ouiouiSub': 'Brunch place bij Fabriek 59 · zondag 9:30 – 17:30', 'hero.ouiouiTag': '02 · In de wagon',
-      'hero.ouiouiAlt': 'De rode treinwagon van Oui Oui bij Fabriek 59, met terrasstoelen ervoor',
-      route: 'Route', instagram: 'Instagram', 'menu.check': 'Bekijk de kaart (PDF)',
-      'street.kicker': 'Street food', 'street.title': 'De crêpes- & galettes-kraam',
-      'street.text': 'Zoete crêpes en hartige galettes van boekweit, voor je neus gebakken op de bakplaat. Je vindt de kraam op de markt, op festivals en evenementen in Brabant, en op aanvraag op jouw eigen feest of bedrijfsborrel.',
-      'street.fixed.kicker': 'Vaste plek', 'street.fixed.title': 'Zaterdagmarkt Koningsplein',
-      'street.fixed.text': 'Hier begon het, in september 2024. Iedere zaterdag met de bakplaten aan.',
-      'street.fixed.hours': 'Zaterdag 10:00 – 17:00',
+      'hero.ouioui': 'Oui, Oui!', 'hero.ouiouiSub': 'Brunchcafé bij Fabriek59 · elke zondag 9:30 – 17:30',
+      'hero.ouiouiAlt': 'De rode treinwagon van Oui, Oui! bij Fabriek59, met terrasstoelen ervoor',
+      route: 'Route', instagram: 'Instagram', 'menu.check': 'Bekijk de kaart', 'ouioui.menu': 'Ontdek onze kaart',
+      'street.kicker': 'Food Stall', 'street.title': 'Crêpes & galettes street food',
+      'street.text': 'Zoete crêpes & hartige boekweitgalettes, ter plekke gebakken volgens de Franse traditie. Je vindt onze food stall op markten, festivals en evenementen in heel Brabant. Op aanvraag ook op jouw eigen evenement.',
+      'street.weekly': 'Wekelijkse locaties',
+      'street.market.title': 'Tilburgse zaterdagmarkt', 'street.market.text': 'Hier is het allemaal begonnen, in september 2024.', 'street.market.hours': 'Elke zaterdag, 10:00 – 17:00',
+      'street.city.title': 'The City - Cobbencampus', 'street.city.text': 'Wekelijks voor de studenten.', 'street.city.hours': 'Elke maandag, 12:00 – 20:00',
       'street.catering': 'Crêpes op jouw evenement?',
-      'next.next': 'Volgende keer', 'next.now': 'Vandaag', 'next.latest': 'Laatst', 'next.fallback': 'Crêpes en galettes, vers van de bakplaat. Tot dan!',
-      'ouioui.kicker': 'Oui Oui', 'ouioui.title': 'Brunch place in de treinwagon',
-      'ouioui.text': 'Sinds 2026 hebben we een eigen plek: een oude treinwagon aan het kanaal, op het terrein van Fabriek 59. Hier schuif je aan voor een ontspannen brunch met crêpes en galettes, zoals in Bretagne. Zonder haast, met een praatje.',
-      'ouioui.where.kicker': 'Waar', 'ouioui.where.title': 'De wagon bij Fabriek 59',
-      'ouioui.hours.kicker': 'Openingstijden', 'ouioui.hours.title': 'Zondag 9:30 – 17:30',
-      'ouioui.hours.text': 'Elke zondag open voor brunch. Op de andere dagen is de wagon gesloten. Afwijkende tijden zetten we op Instagram.',
-      'ticker.1': 'Crêpes', 'ticker.2': 'Galettes', 'ticker.3': 'Zondag brunch in de wagon', 'ticker.4': 'Elke zaterdag op de markt', 'ticker.5': 'Vers van de bakplaat', 'ticker.6': 'Catering op jouw evenement', 'ticker.7': 'Bonjour Tilburg',
-      'gallery.kicker': 'Van de bakplaat', 'gallery.title': 'Onze crêpes',
+      'next.next': 'Binnenkort', 'next.now': 'Vandaag', 'next.latest': 'Onlangs',
+      'ouioui.kicker': 'Oui, Oui!', 'ouioui.title': 'Franse brunch in een treinwagon',
+      'ouioui.text': 'Sinds september 2026 hebben we ons eigen brunchcafé bij Fabriek59. Schuif aan voor een gezellige rit in onze knusse treinwagon. Crêpes, galettes, Franse specialiteiten, warme dranken.',
+      'ouioui.where.kicker': 'Waar?', 'ouioui.where.title': 'Rode wagon bij Fabriek59',
+      'ouioui.hours.kicker': 'Openingstijden', 'ouioui.hours.title': 'Zondag 9:30 – 17:30', 'ouioui.hours.text': 'Alleen op zondag. Dat houdt het bijzonder.',
+      'ticker.1': 'Food Stall', 'ticker.2': 'Brunchcafé', 'ticker.3': 'Catering', 'ticker.4': 'Tilburgse markt', 'ticker.5': 'Crêpes', 'ticker.6': 'Galettes', 'ticker.7': 'Bonjour', 'ticker.8': 'Traditioneel', 'ticker.9': 'Frans', 'ticker.10': 'Huisgemaakt', 'ticker.11': 'Vers',
+      'gallery.kicker': 'Van de bakplaat', 'gallery.title': 'Onze bestsellers',
       'dish.sugar': 'Suiker', 'dish.stroop': 'Stroop', 'dish.og': 'The O.G', 'dish.honey': 'Honing', 'dish.applepie': 'Appeltaart', 'dish.nutella': 'Nutella',
-      'about.kicker': 'Over ons', 'about.title': 'Bonjour, ik ben Simon',
+      'about.kicker': 'Over ons', 'about.title': 'Bonjour! Simon hier,',
       'about.alt': 'Simon Peltier in zijn kraam, lachend met een verse crêpe in de hand',
-      'about.p1': 'Ik groeide op met Franse en Belgische wortels en kwam naar Tilburg om ondernemerschap te studeren. De crêpes en galettes van thuis kwamen mee.',
-      'about.p2': 'In september 2024 begon ik met een kraam op de zaterdagmarkt. Daarna volgden festivals, bedrijfsborrels, studentenhuizen en markten door heel Brabant. In 2026 opende ik, met steun van de Tilburgse community, een eigen plek: een treinwagon op Fabriek 59.',
-      'about.p3': 'Het idee is simpel gebleven: goede ingrediënten, een hete bakplaat en alles vers voor je neus gebakken. En een praatje, dat hoort erbij.',
-      'about.quote': '“Dun, perfect gebakken en vol van smaak.”', 'about.quoteSrc': 'Google-recensie over de zaterdagmarkt',
-      'contact.kicker': 'Contact', 'contact.title': 'Vraag, reservering of crêpes op jouw evenement?',
-      'contact.text': 'Bedrijfsborrel, festival, bruiloft, verjaardag of buurtfeest: Simon komt met de bakplaten naar jou. Stuur een berichtje en je krijgt snel antwoord.',
+      'about.p1': 'Ik groeide op met Franse & Belgische roots en kwam in 2019 naar Tilburg om te studeren. Mijn liefde voor Frans eten en voor ondernemen bracht me tot Peltier.',
+      'about.p2': 'Van jongs af aan heb ik ontelbare crêpes verslonden. Ik bouwde hier mijn eigen wereldje op, maar één ding miste ik nog…',
+      'about.p3': 'In september 2024 begon ik een kleine crêpeskraam op de markt van het Koningsplein in Tilburg. Na de enorme steun van de lokale community wist ik dat ik deze droom verder wilde najagen. Ik stond er elke week en stopte mijn hart in iedere crêpe.',
+      'about.p4': 'Van het een kwam het ander. Ik ging evenementen, cateringklussen en markten door heel Brabant doen. De familie groeide een beetje, en in september 2026, na 9 maanden verbouwen, openden we een eigen plek. We verwelkomen je nu graag bij Oui, Oui!, de treinwagon van Fabriek59.',
+      'contact.kicker': 'Contact', 'contact.title': 'Een vraag, een reservering of een boeking?',
+      'contact.text': 'Festival, bruiloft, verjaardag, bedrijfsborrel of B2B: wij brengen de authentieke Franse ervaring, op maat van jouw evenement. Neem contact op via het kanaal dat jij het fijnst vindt.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
       'place.reviews': 'Google-reviews', 'place.photo': 'Foto via Google Maps',
-      'foot.tag': 'Street food & Oui Oui brunch place', 'foot.contact': 'Contact', 'foot.follow': 'Volg ons', 'foot.gofundme': 'Steun ons via GoFundMe'
+      'foot.tag': 'Food stall & brunchcafé', 'foot.contact': 'Contact', 'foot.follow': 'Volg ons'
     },
     en: {
-      _title: 'Peltier Crêpes & Galettes | Street food & Oui Oui brunch place, Tilburg',
+      _title: 'Peltier Crêpes & Galettes | Food stall & brunch café, Tilburg',
       skip: 'Skip to content',
-      'nav.street': 'Street food', 'nav.ouioui': 'Oui Oui', 'nav.gallery': 'Gallery', 'nav.about': 'About us', 'nav.contact': 'Contact',
+      'nav.street': 'Food Stall', 'nav.ouioui': 'Oui, Oui!', 'nav.gallery': 'Gallery', 'nav.about': 'About us', 'nav.contact': 'Contact',
       'hero.title': 'Peltier Crêpes & Galettes',
-      'hero.tagline': 'French crêpes and galettes from Tilburg. On the street and in our wagon.',
-      'hero.street': 'Street food', 'hero.streetSub': 'Markets, events & catering', 'hero.streetTag': '01 · On the street', 'hero.cta': 'Discover',
+      'hero.tagline': 'Authentic French pancakes. Food stall & brunch café.',
+      'hero.street': 'Food Stall', 'hero.streetSub': 'Markets, events & catering', 'hero.cta': 'Discover',
       'hero.streetAlt': 'Simon making crêpes at his stall while visitors wait',
-      'hero.ouioui': 'Oui Oui', 'hero.ouiouiSub': 'Brunch place at Fabriek 59 · Sunday 9:30 – 17:30', 'hero.ouiouiTag': '02 · In the wagon',
-      'hero.ouiouiAlt': 'The red Oui Oui train wagon at Fabriek 59, with terrace chairs in front',
-      route: 'Directions', instagram: 'Instagram', 'menu.check': 'Check the menu (PDF)',
-      'street.kicker': 'Street food', 'street.title': 'The crêpes & galettes stand',
-      'street.text': 'Sweet crêpes and savoury buckwheat galettes, made in front of you on the griddle. Find the stand at the market, at festivals and events across Brabant, and on request at your own party or company drinks.',
-      'street.fixed.kicker': 'Regular spot', 'street.fixed.title': 'Saturday market, Koningsplein',
-      'street.fixed.text': 'This is where it started, in September 2024. Every Saturday with the griddles on.',
-      'street.fixed.hours': 'Saturday 10:00 – 17:00',
+      'hero.ouioui': 'Oui, Oui!', 'hero.ouiouiSub': 'Brunch café at Fabriek59 · every Sunday 9:30 – 17:30',
+      'hero.ouiouiAlt': 'The red Oui, Oui! train wagon at Fabriek59, with terrace chairs in front',
+      route: 'Directions', instagram: 'Instagram', 'menu.check': 'Check the menu', 'ouioui.menu': 'Discover our menu',
+      'street.kicker': 'Food Stall', 'street.title': 'Crêpes & galettes street food',
+      'street.text': 'Sweet crêpes & savoury buckwheat galettes, baked on site true to the French tradition. Find our street-food stall at markets, festivals and events across Brabant. On request, at your own event.',
+      'street.weekly': 'Weekly locations',
+      'street.market.title': 'Tilburg Saturday market', 'street.market.text': 'This is where it all started, back in September 2024.', 'street.market.hours': 'Every Saturday, 10:00 – 17:00',
+      'street.city.title': 'The City - Cobbencampus', 'street.city.text': 'Serving students, weekly.', 'street.city.hours': 'Every Monday, 12:00 – 20:00',
       'street.catering': 'Crêpes at your event?',
-      'next.next': 'Coming up', 'next.now': 'Today', 'next.latest': 'Most recently', 'next.fallback': 'Crêpes and galettes fresh off the griddle. See you there!',
-      'ouioui.kicker': 'Oui Oui', 'ouioui.title': 'Brunch place in the train wagon',
-      'ouioui.text': 'Since 2026 we have a place of our own: an old train wagon by the canal, on the Fabriek 59 grounds. Settle in for a relaxed brunch with crêpes and galettes, the Breton way. No rush, and a chat included.',
-      'ouioui.where.kicker': 'Where', 'ouioui.where.title': 'The wagon at Fabriek 59',
-      'ouioui.hours.kicker': 'Opening hours', 'ouioui.hours.title': 'Sunday 9:30 – 17:30',
-      'ouioui.hours.text': 'Open every Sunday for brunch. The wagon is closed on the other days. Any changes are posted on Instagram.',
-      'ticker.1': 'Crêpes', 'ticker.2': 'Galettes', 'ticker.3': 'Sunday brunch in the wagon', 'ticker.4': 'Every Saturday at the market', 'ticker.5': 'Fresh off the griddle', 'ticker.6': 'Catering at your event', 'ticker.7': 'Bonjour Tilburg',
-      'gallery.kicker': 'Off the griddle', 'gallery.title': 'Our crêpes',
+      'next.next': 'Coming up', 'next.now': 'Today', 'next.latest': 'Most recently',
+      'ouioui.kicker': 'Oui, Oui!', 'ouioui.title': 'French brunch in a train wagon',
+      'ouioui.text': 'Since September 2026, we opened our very own brunch café at Fabriek59. Settle in for a wholesome ride in our cozy train wagon. Crêpes, galettes, French specialties, warm drinks.',
+      'ouioui.where.kicker': 'Where?', 'ouioui.where.title': 'Red wagon at Fabriek59',
+      'ouioui.hours.kicker': 'Opening hours', 'ouioui.hours.title': 'Sunday 9:30 – 17:30', 'ouioui.hours.text': 'Sundays only. Keep it special.',
+      'ticker.1': 'Food Stall', 'ticker.2': 'Brunch café', 'ticker.3': 'Catering', 'ticker.4': 'Tilburg Market', 'ticker.5': 'Crêpes', 'ticker.6': 'Galettes', 'ticker.7': 'Bonjour', 'ticker.8': 'Traditional', 'ticker.9': 'French', 'ticker.10': 'Homemade', 'ticker.11': 'Fresh',
+      'gallery.kicker': 'Off the griddle', 'gallery.title': 'Our best sellers',
       'dish.sugar': 'Sugar', 'dish.stroop': 'Stroop', 'dish.og': 'The O.G', 'dish.honey': 'Honey', 'dish.applepie': 'Apple pie', 'dish.nutella': 'Nutella',
-      'about.kicker': 'About us', 'about.title': 'Bonjour, I am Simon',
+      'about.kicker': 'About us', 'about.title': 'Bonjour! Simon here,',
       'about.alt': 'Simon Peltier at his stall, smiling and holding out a freshly made crêpe',
-      'about.p1': 'I grew up with French and Belgian roots and came to Tilburg to study entrepreneurship. The crêpes and galettes from home came along.',
-      'about.p2': 'In September 2024 I started with a stall at the Saturday market. Festivals, company drinks, student residences and markets across Brabant followed. In 2026, backed by the Tilburg community, I opened a place of my own: a train wagon at Fabriek 59.',
-      'about.p3': 'The idea has stayed simple: good ingredients, a hot griddle, and everything made fresh in front of you. Plus a chat, that is part of it.',
-      'about.quote': '“Thin, perfectly baked and full of flavour.”', 'about.quoteSrc': 'Google review of the Saturday market stall',
-      'contact.kicker': 'Contact', 'contact.title': 'A question, a booking, or crêpes at your event?',
-      'contact.text': 'Company drinks, festival, wedding, birthday or street party: Simon brings the griddles to you. Send a message and you will hear back quickly.',
+      'about.p1': 'I grew up with French & Belgian roots and came to Tilburg in 2019 to study. My love for French food and for entrepreneurship led me to start Peltier.',
+      'about.p2': 'Since my youngest age, I have devoured countless crêpes. I made my little world here, but I was missing one more thing…',
+      'about.p3': 'In September 2024, I started a small crêpes stand on the Koningsplein Market of Tilburg. After receiving immense support from the local community, I knew I wanted to chase this dream further. I consistently attended the market and put my heart into every single crêpe.',
+      'about.p4': 'One thing led to another. I started joining events, catering gigs, and markets across Brabant. The family grew a little bigger, and in September 2026, after 9 months of renovation, we opened a place of our own. We are now happy to welcome you at Oui, Oui!, the train wagon of Fabriek59.',
+      'contact.kicker': 'Contact', 'contact.title': 'A question, a reservation, or a booking?',
+      'contact.text': 'Festival, wedding, birthday, company gathering or B2B, we bring you the authentic French experience, tailored to your event. Contact us via your preferred channel.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
       'place.reviews': 'Google reviews', 'place.photo': 'Photo via Google Maps',
-      'foot.tag': 'Street food & Oui Oui brunch place', 'foot.contact': 'Contact', 'foot.follow': 'Follow us', 'foot.gofundme': 'Support us on GoFundMe'
+      'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Follow us'
     },
     fr: {
-      _title: 'Peltier Crêpes & Galettes | Street food & Oui Oui brunch place, Tilburg',
+      _title: 'Peltier Crêpes & Galettes | Food stall & brunch café, Tilburg',
       skip: 'Aller au contenu',
-      'nav.street': 'Street food', 'nav.ouioui': 'Oui Oui', 'nav.gallery': 'Galerie', 'nav.about': 'À propos', 'nav.contact': 'Contact',
+      'nav.street': 'Food Stall', 'nav.ouioui': 'Oui, Oui!', 'nav.gallery': 'Galerie', 'nav.about': 'À propos', 'nav.contact': 'Contact',
       'hero.title': 'Peltier Crêpes & Galettes',
-      'hero.tagline': 'Crêpes et galettes françaises à Tilburg. Dans la rue et dans notre wagon.',
-      'hero.street': 'Street food', 'hero.streetSub': 'Marchés, événements & traiteur', 'hero.streetTag': '01 · Dans la rue', 'hero.cta': 'Découvrir',
+      'hero.tagline': 'Crêpes françaises authentiques. Food stall & brunch café.',
+      'hero.street': 'Food Stall', 'hero.streetSub': 'Marchés, événements & traiteur', 'hero.cta': 'Découvrir',
       'hero.streetAlt': 'Simon prépare des crêpes à son stand pendant que les visiteurs attendent',
-      'hero.ouioui': 'Oui Oui', 'hero.ouiouiSub': 'Brunch place à Fabriek 59 · dimanche 9h30 – 17h30', 'hero.ouiouiTag': '02 · Dans le wagon',
-      'hero.ouiouiAlt': 'Le wagon rouge de Oui Oui à Fabriek 59, avec les chaises de la terrasse devant',
-      route: 'Itinéraire', instagram: 'Instagram', 'menu.check': 'Voir la carte (PDF)',
-      'street.kicker': 'Street food', 'street.title': 'Le stand de crêpes & galettes',
-      'street.text': 'Crêpes sucrées et galettes de sarrasin salées, préparées devant vous sur le bilig. Retrouvez le stand au marché, dans les festivals et événements du Brabant, et sur demande à votre fête ou afterwork.',
-      'street.fixed.kicker': 'Adresse fixe', 'street.fixed.title': 'Marché du samedi, Koningsplein',
-      'street.fixed.text': 'Tout a commencé ici, en septembre 2024. Chaque samedi, biligs allumés.',
-      'street.fixed.hours': 'Samedi 10:00 – 17:00',
+      'hero.ouioui': 'Oui, Oui!', 'hero.ouiouiSub': 'Brunch café à Fabriek59 · tous les dimanches 9h30 – 17h30',
+      'hero.ouiouiAlt': 'Le wagon rouge de Oui, Oui! à Fabriek59, avec les chaises de la terrasse devant',
+      route: 'Itinéraire', instagram: 'Instagram', 'menu.check': 'Voir la carte', 'ouioui.menu': 'Découvrir notre carte',
+      'street.kicker': 'Food Stall', 'street.title': 'Crêpes & galettes street food',
+      'street.text': 'Crêpes sucrées & galettes de sarrasin salées, cuites sur place dans la pure tradition française. Retrouvez notre stand sur les marchés, festivals et événements de tout le Brabant. Sur demande, à votre propre événement.',
+      'street.weekly': 'Chaque semaine',
+      'street.market.title': 'Marché du samedi, Tilburg', 'street.market.text': 'C’est ici que tout a commencé, en septembre 2024.', 'street.market.hours': 'Tous les samedis, 10h00 – 17h00',
+      'street.city.title': 'The City - Cobbencampus', 'street.city.text': 'Chaque semaine pour les étudiants.', 'street.city.hours': 'Tous les lundis, 12h00 – 20h00',
       'street.catering': 'Des crêpes à votre événement ?',
-      'next.next': 'Prochainement', 'next.now': 'Aujourd’hui', 'next.latest': 'Dernièrement', 'next.fallback': 'Crêpes et galettes tout juste sorties du bilig. À bientôt !',
-      'ouioui.kicker': 'Oui Oui', 'ouioui.title': 'Brunch place dans le wagon',
-      'ouioui.text': 'Depuis 2026, nous avons notre propre adresse : un ancien wagon au bord du canal, sur le site de Fabriek 59. Installez-vous pour un brunch tranquille, crêpes et galettes comme en Bretagne. Sans se presser, avec un brin de conversation.',
-      'ouioui.where.kicker': 'Où', 'ouioui.where.title': 'Le wagon à Fabriek 59',
-      'ouioui.hours.kicker': 'Horaires', 'ouioui.hours.title': 'Dimanche 9h30 – 17h30',
-      'ouioui.hours.text': 'Ouvert tous les dimanches pour le brunch. Le wagon est fermé les autres jours. Les changements sont annoncés sur Instagram.',
-      'ticker.1': 'Crêpes', 'ticker.2': 'Galettes', 'ticker.3': 'Brunch du dimanche dans le wagon', 'ticker.4': 'Chaque samedi au marché', 'ticker.5': 'Tout juste sorties du bilig', 'ticker.6': 'Traiteur pour vos événements', 'ticker.7': 'Bonjour Tilburg',
-      'gallery.kicker': 'Sorties du bilig', 'gallery.title': 'Nos crêpes',
+      'next.next': 'Prochainement', 'next.now': 'Aujourd’hui', 'next.latest': 'Dernièrement',
+      'ouioui.kicker': 'Oui, Oui!', 'ouioui.title': 'Brunch français dans un wagon',
+      'ouioui.text': 'Depuis septembre 2026, nous avons ouvert notre propre brunch café à Fabriek59. Installez-vous pour un voyage gourmand dans notre wagon douillet. Crêpes, galettes, spécialités françaises, boissons chaudes.',
+      'ouioui.where.kicker': 'Où ?', 'ouioui.where.title': 'Le wagon rouge de Fabriek59',
+      'ouioui.hours.kicker': 'Horaires', 'ouioui.hours.title': 'Dimanche 9h30 – 17h30', 'ouioui.hours.text': 'Le dimanche seulement. Pour que ça reste spécial.',
+      'ticker.1': 'Food Stall', 'ticker.2': 'Brunch café', 'ticker.3': 'Traiteur', 'ticker.4': 'Marché de Tilburg', 'ticker.5': 'Crêpes', 'ticker.6': 'Galettes', 'ticker.7': 'Bonjour', 'ticker.8': 'Traditionnel', 'ticker.9': 'Français', 'ticker.10': 'Fait maison', 'ticker.11': 'Frais',
+      'gallery.kicker': 'Sorties du bilig', 'gallery.title': 'Nos best-sellers',
       'dish.sugar': 'Sucre', 'dish.stroop': 'Sirop', 'dish.og': 'The O.G', 'dish.honey': 'Miel', 'dish.applepie': 'Tarte aux pommes', 'dish.nutella': 'Nutella',
-      'about.kicker': 'À propos', 'about.title': 'Bonjour, je suis Simon',
+      'about.kicker': 'À propos', 'about.title': 'Bonjour ! Ici Simon,',
       'about.alt': 'Simon Peltier à son stand, souriant, une crêpe fraîche à la main',
-      'about.p1': 'J’ai grandi avec des racines françaises et belges et je suis venu à Tilburg étudier l’entrepreneuriat. Les crêpes et galettes de la maison ont suivi.',
-      'about.p2': 'En septembre 2024, j’ai démarré avec un stand au marché du samedi. Puis sont venus les festivals, les afterworks, les résidences étudiantes et les marchés dans tout le Brabant. En 2026, avec le soutien de la communauté de Tilburg, j’ai ouvert ma propre adresse : un wagon à Fabriek 59.',
-      'about.p3': 'L’idée est restée simple : de bons ingrédients, un bilig bien chaud et tout est préparé devant vous. Avec un brin de conversation, ça fait partie du menu.',
-      'about.quote': '« Fines, parfaitement cuites et pleines de saveur. »', 'about.quoteSrc': 'Avis Google sur le stand du marché',
-      'contact.kicker': 'Contact', 'contact.title': 'Une question, une réservation ou des crêpes à votre événement ?',
-      'contact.text': 'Afterwork, festival, mariage, anniversaire ou fête de quartier : Simon vient avec ses biligs. Envoyez un message et vous aurez vite une réponse.',
+      'about.p1': 'J’ai grandi avec des racines françaises & belges et je suis venu à Tilburg en 2019 pour étudier. Mon amour de la cuisine française et de l’entrepreneuriat m’a mené à créer Peltier.',
+      'about.p2': 'Depuis tout petit, j’ai dévoré d’innombrables crêpes. Je m’étais construit mon petit monde ici, mais il me manquait encore une chose…',
+      'about.p3': 'En septembre 2024, j’ai lancé un petit stand de crêpes sur le marché du Koningsplein à Tilburg. Porté par l’immense soutien de la communauté locale, j’ai su que je voulais poursuivre ce rêve. J’ai tenu le marché chaque semaine et mis tout mon cœur dans chaque crêpe.',
+      'about.p4': 'De fil en aiguille, j’ai rejoint des événements, des prestations traiteur et des marchés dans tout le Brabant. La famille s’est un peu agrandie et, en septembre 2026, après 9 mois de rénovation, nous avons ouvert notre propre adresse. Nous sommes heureux de vous accueillir à Oui, Oui!, le wagon de Fabriek59.',
+      'contact.kicker': 'Contact', 'contact.title': 'Une question, une réservation ou une prestation ?',
+      'contact.text': 'Festival, mariage, anniversaire, événement d’entreprise ou B2B : nous vous apportons l’authentique expérience française, adaptée à votre événement. Contactez-nous par le canal de votre choix.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
       'place.reviews': 'avis Google', 'place.photo': 'Photo via Google Maps',
-      'foot.tag': 'Street food & Oui Oui brunch place', 'foot.contact': 'Contact', 'foot.follow': 'Suivez-nous', 'foot.gofundme': 'Soutenez-nous sur GoFundMe'
+      'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Suivez-nous'
     }
   };
   const LOCALE = { nl: 'nl-NL', en: 'en-GB', fr: 'fr-FR' };
@@ -147,10 +144,6 @@
       const key = el.getAttribute('data-i18n-alt');
       if (dict[key] !== undefined) el.alt = dict[key];
     });
-    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
-      const key = el.getAttribute('data-i18n-aria');
-      if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
-    });
     document.querySelectorAll('.lang button').forEach(function (btn) {
       btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
     });
@@ -165,37 +158,47 @@
     renderPlace();
   }
 
-  /* Calendar card: /api/agenda returns the next event from Simon's public calendar
-     (or the one happening now, or the most recent one when nothing is planned). */
+  /* Coming up: /api/agenda returns up to three one-off events from Simon's public calendar
+     (or the most recent ones when nothing is planned). One box per event. */
   function renderNext(data) {
-    const card = document.getElementById('next');
-    if (!card) return;
-    if (!data || data.mode === 'none' || !data.event) { card.hidden = true; return; }
-    const ev = data.event;
-    const start = new Date(ev.start), end = new Date(ev.end);
-    const loc = LOCALE[lang];
+    const block = document.getElementById('next');
+    if (!block) return;
+    if (!data || !data.events || !data.events.length) { block.hidden = true; return; }
+    const loc = LOCALE[lang], now = Date.now();
     const dayFmt = new Intl.DateTimeFormat(loc, { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' });
     const timeFmt = new Intl.DateTimeFormat(loc, { timeZone: TZ, hour: '2-digit', minute: '2-digit' });
-    let when;
-    if (ev.allDay) {
-      const lastDay = new Date(end.getTime() - 1); // DTEND is exclusive
-      when = dayFmt.format(start);
-      if (dayFmt.format(lastDay) !== when) when += ' – ' + dayFmt.format(lastDay);
-    } else {
-      when = dayFmt.format(start) + ', ' + timeFmt.format(start) + ' – ' + timeFmt.format(end);
-    }
+    const tpl = document.getElementById('next-tpl');
+    const list = document.getElementById('next-list');
+    list.textContent = '';
+    data.events.forEach(function (ev) {
+      const start = new Date(ev.start), end = new Date(ev.end);
+      let when;
+      if (ev.allDay) {
+        const lastDay = new Date(end.getTime() - 1); // DTEND is exclusive
+        when = dayFmt.format(start);
+        if (dayFmt.format(lastDay) !== when) when += ' – ' + dayFmt.format(lastDay);
+      } else {
+        when = dayFmt.format(start) + ', ' + timeFmt.format(start) + ' – ' + timeFmt.format(end);
+      }
+      const live = start.getTime() <= now && end.getTime() > now;
+      const box = tpl.content.firstElementChild.cloneNode(true);
+      box.classList.toggle('is-now', live);
+      box.querySelector('.next-when').textContent = live ? T[lang]['next.now'] + ' · ' + when : when;
+      box.querySelector('.next-title').textContent = ev.title;
+      const where = box.querySelector('.next-where');
+      const route = box.querySelector('.next-route');
+      where.textContent = ev.location || '';
+      where.hidden = !ev.location;
+      route.textContent = T[lang].route;
+      route.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(ev.location || '');
+      route.parentNode.hidden = !ev.location;
+      const text = box.querySelector('.next-text');
+      text.textContent = ev.text || '';
+      text.hidden = !ev.text;
+      list.appendChild(box);
+    });
     document.getElementById('next-kicker').textContent = T[lang]['next.' + data.mode] || T[lang]['next.next'];
-    document.getElementById('next-title').textContent = ev.title;
-    document.getElementById('next-when').textContent = when;
-    const where = document.getElementById('next-where');
-    const route = document.getElementById('next-route');
-    where.textContent = ev.location || '';
-    where.hidden = !ev.location;
-    route.hidden = !ev.location;
-    route.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(ev.location || '');
-    document.getElementById('next-text').textContent = ev.text || T[lang]['next.fallback'];
-    card.classList.toggle('is-now', data.mode === 'now');
-    card.hidden = false;
+    block.hidden = false;
   }
 
   function loadNext() {
