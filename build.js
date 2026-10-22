@@ -42,11 +42,10 @@ async function main() {
   }
   await fs.writeFile(path.join(OUT, 'index.html'), html);
 
-  const [avatar, logo512, favicon] = await Promise.all([
-    get('avatar.webp'), get('logo-512x512.png'), get('logo-32x32-bg.png')
-  ]);
+  const [logo512, favicon] = await Promise.all([get('logo-512x512.png'), get('logo-32x32-bg.png')]);
+  const avatar = await fs.readFile('assets/about-simon.webp'); // Simon with a crêpe (photo from Harold), full size
 
-  await fs.writeFile(path.join(IMG, 'simon.webp'), avatar);
+  await fs.writeFile(path.join(IMG, 'about-simon.webp'), avatar);
   await fs.writeFile(path.join(IMG, 'favicon-32.png'), favicon);
   await fs.writeFile(path.join(IMG, 'logo.png'), logo512);
   await sharp(logo512).resize(192, 192).png().toFile(path.join(IMG, 'logo-192.png'));
