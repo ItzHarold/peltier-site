@@ -25,7 +25,6 @@ test('the next three one-off events, in order; weekly series and their instances
     ev(['UID:g', 'SUMMARY:Private thing', 'STATUS:CANCELLED', 'DTSTART;VALUE=DATE:20261211', 'DTEND;VALUE=DATE:20261212'])
   ].join('\r\n'));
   const r = agendaFromIcs(ics, new Date('2026-10-22T18:00:00Z'));
-  assert.equal(r.mode, 'next');
   assert.deepEqual(r.events.map((e) => e.title), ['FeelGood Market Eindhoven Xmas edition', 'Winter Market Eindhoven', 'MTM Xmas Market @ BOS&Co']);
   assert.deepEqual(r.events[0], {
     title: 'FeelGood Market Eindhoven Xmas edition', location: 'Strijp-S, Eindhoven, Netherlands',
@@ -35,11 +34,10 @@ test('the next three one-off events, in order; weekly series and their instances
   assert.equal(r.events[1].allDay, true);
   // halfway through the two-day market it is still listed first
   assert.equal(agendaFromIcs(ics, new Date('2026-12-13T10:00:00Z')).events[0].title, 'Winter Market Eindhoven');
-  // nothing planned any more: the most recent ones, newest first
-  const past = agendaFromIcs(ics, new Date('2027-06-01T00:00:00Z'));
-  assert.equal(past.mode, 'latest');
-  assert.deepEqual(past.events.map((e) => e.title), ['Spring fair', 'MTM Xmas Market @ BOS&Co', 'Winter Market Eindhoven']);
-  assert.deepEqual(agendaFromIcs(feed(''), new Date()), { mode: 'none', events: [] });
+  // fewer than three left: just those; nothing planned: an empty list (the site hides the block)
+  assert.deepEqual(agendaFromIcs(ics, new Date('2026-12-25T00:00:00Z')).events.map((e) => e.title), ['Spring fair']);
+  assert.deepEqual(agendaFromIcs(ics, new Date('2027-06-01T00:00:00Z')), { events: [] });
+  assert.deepEqual(agendaFromIcs(feed(''), new Date()), { events: [] });
 });
 
 test('only the "Site:" part of the notes is published', () => {

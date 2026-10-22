@@ -224,7 +224,7 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45
 .ticker { background: var(--y-100); color: var(--wine); overflow: hidden; padding: .7rem 0; border-top: 3px solid var(--y-200); border-bottom: 3px solid var(--y-200); }
 .ticker-track { display: flex; width: max-content; animation: ticker 32s linear infinite; }
 .ticker:hover .ticker-track { animation-play-state: paused; }
-.ticker-track span { font: 700 1.25rem var(--display); white-space: nowrap; padding: 0 1.4rem; display: inline-flex; align-items: center; gap: 1.4rem; }
+.ticker-track span { font: 700 1.25rem var(--display); white-space: nowrap; padding: 0 1.05rem; display: inline-flex; align-items: center; gap: 2.1rem; } /* dot sits halfway between two words: 2.1rem to each */
 .ticker-track span::after { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--wine); opacity: .6; }
 @keyframes ticker { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 @media (min-width: 900px) { .ticker-track span { font-size: 1.5rem; } }
@@ -233,6 +233,10 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45
 section { scroll-margin-top: calc(var(--top-h) + 3px); }
 .branch, .gallery, .about { padding: clamp(3rem, 7vw, 5.5rem) 0; }
 .section-intro { font-size: 1.15rem; max-width: 56ch; margin-bottom: 1.75rem; }
+/* Section heading with a button at the top right (wraps under the title on narrow screens) */
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: .6rem 1.5rem; margin-bottom: .5rem; }
+.section-head h2 { margin-bottom: 0; }
+@media (min-width: 720px) { .section-head .btn { margin-top: 1.6rem; } }
 .sub { font: 700 1rem var(--body); color: var(--wine); text-transform: uppercase; letter-spacing: .08em; margin: 2.25rem 0 1rem; }
 .section-intro + .sub { margin-top: 0; }
 .branch-street { background: var(--white); border-top: 3px solid var(--y-200); }

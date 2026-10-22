@@ -29,15 +29,15 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 
 | Name | Purpose |
 | --- | --- |
-| `AGENDA_ICS_URL` | public iCloud/Google calendar feed (`webcal://` or `https://`); set |
+| `AGENDA_ICS_URL` | public iCloud/Google calendar feed (`webcal://` or `https://`) of the event calendar; set |
 | `GOOGLE_MAPS_API_KEY` | Places API (New) key; without it the site keeps its own wagon photo and no rating |
 | `GOOGLE_PLACE_QUERY` | optional, defaults to the "Oui, Oui! - by Peltier Crêpes & Galettes" listing |
 
 ## Simon's calendar
 
 The Food Stall section lists the weekly spots itself (Saturday market, The City on Mondays) and shows
-"Coming up": the next three one-off events from the calendar, or the most recent ones when nothing is
-planned. Per event:
+"Coming up": the next three events from Simon's "Event days" calendar (`AGENDA_ICS_URL`). Fewer planned →
+fewer boxes; none → the block is not shown. Per event:
 
 - Repeating events (the weekly series) are never shown; one-off events are.
 - **Location** field → shown as the address, plus a Route button.

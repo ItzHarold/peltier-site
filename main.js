@@ -21,7 +21,7 @@
       'street.market.title': 'Tilburgse zaterdagmarkt', 'street.market.text': 'Hier is het allemaal begonnen, in september 2024.', 'street.market.hours': 'Elke zaterdag, 10:00 – 17:00',
       'street.city.title': 'The City - Cobbencampus', 'street.city.text': 'Wekelijks voor de studenten.', 'street.city.hours': 'Elke maandag, 12:00 – 20:00',
       'street.catering': 'Crêpes op jouw evenement?',
-      'next.next': 'Binnenkort', 'next.now': 'Vandaag', 'next.latest': 'Onlangs',
+      'next.next': 'Binnenkort', 'next.now': 'Vandaag',
       'ouioui.kicker': 'Oui, Oui!', 'ouioui.title': 'Franse brunch in een treinwagon',
       'ouioui.text': 'Sinds september 2026 hebben we ons eigen brunchcafé bij Fabriek59. Schuif aan voor een gezellige rit in onze knusse treinwagon. Crêpes, galettes, Franse specialiteiten, warme dranken.',
       'ouioui.where.kicker': 'Waar?', 'ouioui.where.title': 'Rode wagon bij Fabriek59',
@@ -58,7 +58,7 @@
       'street.market.title': 'Tilburg Saturday market', 'street.market.text': 'This is where it all started, back in September 2024.', 'street.market.hours': 'Every Saturday, 10:00 – 17:00',
       'street.city.title': 'The City - Cobbencampus', 'street.city.text': 'Serving students, weekly.', 'street.city.hours': 'Every Monday, 12:00 – 20:00',
       'street.catering': 'Crêpes at your event?',
-      'next.next': 'Coming up', 'next.now': 'Today', 'next.latest': 'Most recently',
+      'next.next': 'Coming up', 'next.now': 'Today',
       'ouioui.kicker': 'Oui, Oui!', 'ouioui.title': 'French brunch in a train wagon',
       'ouioui.text': 'Since September 2026, we opened our very own brunch café at Fabriek59. Settle in for a wholesome ride in our cozy train wagon. Crêpes, galettes, French specialties, warm drinks.',
       'ouioui.where.kicker': 'Where?', 'ouioui.where.title': 'Red wagon at Fabriek59',
@@ -95,7 +95,7 @@
       'street.market.title': 'Marché du samedi, Tilburg', 'street.market.text': 'C’est ici que tout a commencé, en septembre 2024.', 'street.market.hours': 'Tous les samedis, 10h00 – 17h00',
       'street.city.title': 'The City - Cobbencampus', 'street.city.text': 'Chaque semaine pour les étudiants.', 'street.city.hours': 'Tous les lundis, 12h00 – 20h00',
       'street.catering': 'Des crêpes à votre événement ?',
-      'next.next': 'Prochainement', 'next.now': 'Aujourd’hui', 'next.latest': 'Dernièrement',
+      'next.next': 'Prochainement', 'next.now': 'Aujourd’hui',
       'ouioui.kicker': 'Oui, Oui!', 'ouioui.title': 'Brunch français dans un wagon',
       'ouioui.text': 'Depuis septembre 2026, nous avons ouvert notre propre brunch café à Fabriek59. Installez-vous pour un voyage gourmand dans notre wagon douillet. Crêpes, galettes, spécialités françaises, boissons chaudes.',
       'ouioui.where.kicker': 'Où ?', 'ouioui.where.title': 'Le wagon rouge de Fabriek59',
@@ -158,8 +158,8 @@
     renderPlace();
   }
 
-  /* Coming up: /api/agenda returns up to three one-off events from Simon's public calendar
-     (or the most recent ones when nothing is planned). One box per event. */
+  /* Coming up: /api/agenda returns the next (up to three) one-off events from Simon's event calendar.
+     One box per event; nothing planned -> the whole block stays hidden. */
   function renderNext(data) {
     const block = document.getElementById('next');
     if (!block) return;
@@ -197,7 +197,7 @@
       text.hidden = !ev.text;
       list.appendChild(box);
     });
-    document.getElementById('next-kicker').textContent = T[lang]['next.' + data.mode] || T[lang]['next.next'];
+    document.getElementById('next-kicker').textContent = T[lang]['next.next'];
     block.hidden = false;
   }
 
