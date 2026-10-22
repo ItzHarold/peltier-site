@@ -112,7 +112,7 @@ body.scrolled .top { box-shadow: 0 6px 24px rgba(120, 48, 49, .12); }
   margin-left: auto; display: inline-flex; align-items: center; justify-content: center;
   width: 48px; height: 48px; padding: 0; border: 0; background: transparent; cursor: pointer; color: var(--ink);
 }
-.burger svg { width: 40px; height: 40px; display: block; }
+.burger svg { width: 46px; height: 46px; display: block; }
 .burger .ico-rake { display: none; width: 30px; height: 30px; }
 body.nav-open .burger .ico-crepes { display: none; }
 body.nav-open .burger .ico-rake { display: block; }
