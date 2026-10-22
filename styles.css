@@ -321,6 +321,7 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 /* About: the oval portrait takes the whole first column */
 .about-grid { display: grid; gap: 2rem; align-items: center; }
 .about-photo { width: min(82%, 380px); margin-inline: auto; }
+.about-copy p { white-space: pre-line; } /* Simon's text keeps its own line breaks */
 @media (min-width: 860px) {
   .about-grid { grid-template-columns: minmax(0, 460px) 1fr; gap: 4rem; }
   .about-photo { width: 100%; }
