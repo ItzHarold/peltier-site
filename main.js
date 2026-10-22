@@ -344,6 +344,7 @@
     const t0 = performance.now();
     const intro = document.documentElement.classList.contains('intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches;
     const imgs = Array.from(document.images).filter(function (img) { return img.loading !== 'lazy'; });
+    loading.push(new Promise(function (r) { const i = new Image(); i.onload = i.onerror = r; i.src = '/images/street-bg.webp'; })); // CSS background, not in document.images
     const ready = Promise.all(imgs.map(function (img) {
       return img.complete ? null : new Promise(function (r) { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); });
     }).concat(loading, document.fonts ? [document.fonts.ready] : []));

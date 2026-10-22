@@ -47,6 +47,7 @@ async function main() {
   // Rename when they change: images are cached for a year.
   await fs.copyFile('assets/hero-ouioui.webp', path.join(IMG, 'hero-ouioui.webp'));
   await fs.copyFile('assets/hero-street.webp', path.join(IMG, 'hero-street.webp'));
+  await fs.copyFile('assets/street-bg.webp', path.join(IMG, 'street-bg.webp')); // Food Stall section background
   // The wagon photo the listing block shows until the Google listing photo takes over.
   await fs.copyFile('assets/wagon.webp', path.join(IMG, 'wagon.webp'));
   // The wagon video for the Oui, Oui! stage (scrubbed by scroll): upscaled 1080p for desktop, 540p for phones, and its first frame

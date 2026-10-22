@@ -248,7 +248,10 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 @media (max-width: 719px) { .section-head .btn { display: none; } .intro-cta { margin: -.6rem 0 1.9rem; } }
 .sub { font: 700 1rem var(--body); color: var(--wine); text-transform: uppercase; letter-spacing: .08em; margin: 2.25rem 0 1rem; }
 .section-intro + .sub, .intro-cta + .sub { margin-top: 0; }
-.branch-street { background: var(--white); border-top: 3px solid var(--y-200); }
+.branch-street { /* the festival crowd, washed out so the text stays readable */
+  background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(/images/street-bg.webp) center / cover no-repeat var(--white);
+  border-top: 3px solid var(--y-200);
+}
 .branch-ouioui { background: var(--y-100); }
 .branch-ouioui .spot { background: var(--white); }
 
