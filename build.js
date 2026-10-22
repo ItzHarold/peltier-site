@@ -10,8 +10,8 @@ const OUT = 'public';
 const IMG = path.join(OUT, 'images');
 const BUTTER = '#FEEA92';
 
-// Menu PDFs, one per side of the business. Drop the file in menu/ and the button appears.
-const PDFS = { street: 'street-food.pdf', ouioui: 'oui-oui.pdf' };
+// Menu PDFs. Drop the files in menu/ and the matching button appears (the brunch menu needs both languages).
+const PDFS = { street: ['street-food.pdf'], ouioui: ['oui-oui-en.pdf', 'oui-oui-nl.pdf'] };
 
 async function get(name) {
   const r = await fetch(SRC + name, { headers: { 'User-Agent': UA } });
@@ -28,17 +28,17 @@ async function main() {
   }
 
   let html = await fs.readFile('index.html', 'utf8');
-  for (const [key, file] of Object.entries(PDFS)) {
-    const src = path.join('menu', file);
-    const has = await fs.stat(src).then(() => true).catch(() => false);
+  for (const [key, files] of Object.entries(PDFS)) {
+    const present = await Promise.all(files.map((f) => fs.stat(path.join('menu', f)).then(() => true).catch(() => false)));
+    const has = present.every(Boolean);
     if (has) {
       await fs.mkdir(path.join(OUT, 'menu'), { recursive: true });
-      await fs.copyFile(src, path.join(OUT, 'menu', file));
+      for (const f of files) await fs.copyFile(path.join('menu', f), path.join(OUT, 'menu', f));
       html = html.replace(`<!--pdf:${key}-->`, '').replace(`<!--/pdf:${key}-->`, '');
     } else {
       html = html.replace(new RegExp(`\\s*<!--pdf:${key}-->[\\s\\S]*?<!--/pdf:${key}-->`), '');
     }
-    console.log(`${file}: ${has ? 'included' : 'not there yet, button omitted'}`);
+    console.log(`${files.join(' + ')}: ${has ? 'included' : 'not there yet, button omitted'}`);
   }
   await fs.writeFile(path.join(OUT, 'index.html'), html);
 

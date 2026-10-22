@@ -1,1 +1,1 @@
-Drop street-food.pdf and/or oui-oui.pdf here; build.js adds the buttons when the files exist.
+oui-oui-en.pdf / oui-oui-nl.pdf: the Oui, Oui! brunch menu (split from Magi's Menus_OuiOui-LeWagon_A5 PDF, qpdf-recompressed). Add street-food.pdf and build.js adds the Food Stall menu button.

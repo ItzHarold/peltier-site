@@ -23,7 +23,7 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 | `api/place.js` | Google Business listing (photo, rating) through the Places API (New) |
 | `photos/` | the six crêpe photos from the Figma "Crêpes" page (carousel) |
 | `assets/wagon.webp` | the wagon photo used until the Google listing photo takes over |
-| `menu/` | drop `street-food.pdf` and/or `oui-oui.pdf` here and the "Check the menu" / "Discover our menu" buttons appear |
+| `menu/` | `oui-oui-en.pdf` + `oui-oui-nl.pdf` (the brunch menu, served by language; French gets English); drop `street-food.pdf` here and the Food Stall "Check the menu" button appears |
 
 ## Environment variables (Vercel → Settings → Environment Variables)
 

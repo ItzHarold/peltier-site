@@ -12,7 +12,7 @@
       'hero.streetAlt': 'Simon bakt crêpes op zijn kraam terwijl bezoekers wachten',
       'hero.ouioui': 'Oui, Oui!', 'hero.ouiouiSub': 'Brunchcafé bij Fabriek59 · elke zondag 9:30 – 17:30',
       'hero.ouiouiAlt': 'De rode treinwagon van Oui, Oui! bij Fabriek59, met terrasstoelen ervoor',
-      route: 'Route', instagram: 'Instagram', 'menu.check': 'Bekijk de kaart', 'ouioui.menu': 'Ontdek onze kaart',
+      route: 'Route', instagram: 'Instagram', 'menu.check': 'Bekijk de kaart', 'ouioui.menu': 'Brunchmenu',
       'street.kicker': 'Food Stall', 'street.title': 'Crêpes & galettes street food',
       'street.text': 'Zoete crêpes & hartige boekweitgalettes, ter plekke gebakken volgens de Franse traditie. Je vindt onze food stall op markten, festivals en evenementen in heel Brabant. Op aanvraag ook op jouw eigen evenement.',
       'street.weekly': 'Wekelijkse locaties',
@@ -49,7 +49,7 @@
       'hero.streetAlt': 'Simon making crêpes at his stall while visitors wait',
       'hero.ouioui': 'Oui, Oui!', 'hero.ouiouiSub': 'Brunch café at Fabriek59 · every Sunday 9:30 – 17:30',
       'hero.ouiouiAlt': 'The red Oui, Oui! train wagon at Fabriek59, with terrace chairs in front',
-      route: 'Directions', instagram: 'Instagram', 'menu.check': 'Check the menu', 'ouioui.menu': 'Discover our menu',
+      route: 'Directions', instagram: 'Instagram', 'menu.check': 'Check the menu', 'ouioui.menu': 'Brunch Menu',
       'street.kicker': 'Food Stall', 'street.title': 'Crêpes & galettes street food',
       'street.text': 'Sweet crêpes & savoury buckwheat galettes, baked on site true to the French tradition. Find our street-food stall at markets, festivals and events across Brabant. On request, at your own event.',
       'street.weekly': 'Weekly locations',
@@ -86,7 +86,7 @@
       'hero.streetAlt': 'Simon prépare des crêpes à son stand pendant que les visiteurs attendent',
       'hero.ouioui': 'Oui, Oui!', 'hero.ouiouiSub': 'Brunch café à Fabriek59 · tous les dimanches 9h30 – 17h30',
       'hero.ouiouiAlt': 'Le wagon rouge de Oui, Oui! à Fabriek59, avec les chaises de la terrasse devant',
-      route: 'Itinéraire', instagram: 'Instagram', 'menu.check': 'Voir la carte', 'ouioui.menu': 'Découvrir notre carte',
+      route: 'Itinéraire', instagram: 'Instagram', 'menu.check': 'Voir la carte', 'ouioui.menu': 'Menu brunch',
       'street.kicker': 'Food Stall', 'street.title': 'Crêpes & galettes street food',
       'street.text': 'Crêpes sucrées & galettes de sarrasin salées, cuites sur place dans la pure tradition française. Retrouvez notre stand sur les marchés, festivals et événements de tout le Brabant. Sur demande, à votre propre événement.',
       'street.weekly': 'Chaque semaine',
@@ -145,6 +145,8 @@
     document.querySelectorAll('.lang button').forEach(function (btn) {
       btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
     });
+    const menu = document.getElementById('brunch-menu'); // Dutch menu for NL, English for EN and FR
+    if (menu) menu.href = '/menu/oui-oui-' + (lang === 'nl' ? 'nl' : 'en') + '.pdf';
   }
 
   function setLanguage(next) {
