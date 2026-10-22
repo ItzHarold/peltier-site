@@ -147,6 +147,8 @@ body.nav-open .burger .ico-rake { display: block; }
 }
 .lang button[aria-pressed="true"] { background: var(--y-600); color: var(--ink); }
 .lang button:hover { color: var(--ink); }
+.lang-top { margin-left: auto; } .lang-top + .burger { margin-left: 0; } /* phones: NL/EN/FR in the top bar, right next to the burger */
+@media (min-width: 900px) { .lang-top { display: none; } } /* desktop has the switch in the menu */
 
 /* Landing: a headline and two halves that together fill the first screen (split-screen hero).
    Height = small viewport (100svh: stable while the phone's address bar is showing; 100vh fallback),

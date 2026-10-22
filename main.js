@@ -381,7 +381,8 @@
     initReveals();
     initDock();
     initStage();
-    renderPlace();
+    // The Google embed needs ~5s to boot, so it starts right after the page's own assets instead of when scrolled near
+    if (document.readyState === 'complete') renderPlace(); else addEventListener('load', renderPlace, { once: true });
     loadNext();
   });
 })();
