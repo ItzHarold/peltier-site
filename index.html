@@ -30,7 +30,11 @@
   <link rel="preload" as="image" href="/images/street.webp" fetchpriority="high">
   <link rel="preload" as="image" href="/images/wagon.webp" fetchpriority="high">
   <link rel="stylesheet" href="/styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add('js');
+    // First page load of a visit: the loading screen shows straight away, for one whole crêpe (see main.js)
+    try { if (!sessionStorage.getItem('peltier-seen')) document.documentElement.classList.add('intro'); } catch (e) {}
+  </script>
 
   <script type="application/ld+json">
   {

@@ -345,15 +345,17 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 }
 .foot-bottom p { margin: 0; }
 
-/* Loading screen. Hidden without JS; with JS it fades in only after 500ms (fast loads never see it)
-   and main.js removes it once the hero photos and fonts are in. The crêpe is two faces in 3D:
-   the pale batter side that spreads and browns, and the cooked side revealed by the flip. */
+/* Loading screen. Hidden without JS. On the first page load of a visit (html.intro) it shows at once
+   and stays for one whole crêpe; afterwards it only fades in when the hero photos take longer than
+   500ms. main.js removes it. The crêpe is two faces in 3D: the pale batter side that spreads and
+   browns, and the cooked side revealed by the flip. */
 .loader { display: none; }
 .js .loader {
   position: fixed; inset: 0; z-index: 200; display: grid; place-content: center; justify-items: center; gap: .4rem;
   background: var(--base); color: var(--wine); text-align: center; padding: 1rem;
   opacity: 0; animation: loader-in .3s ease .5s forwards; transition: opacity .4s ease;
 }
+.intro .loader { animation-delay: 0s; }
 @keyframes loader-in { to { opacity: 1; } }
 .loader-hi { font: 700 2.2rem var(--display); margin: .9rem 0 0; line-height: 1; }
 .loader-text { margin: 0; font-weight: 600; color: var(--ink-soft); max-width: 30ch; }

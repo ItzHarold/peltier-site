@@ -277,20 +277,22 @@
       .catch(function () { /* keep our own photo */ });
   }
 
-  /* Loading screen: gone as soon as the hero photos are in (or after 5s at most). It fades in only
-     after 500ms, so a quick load never shows it; once it has shown, it stays long enough for the
-     crêpe to be poured, cooked and flipped once (2.7s) so it does not flash. */
+  /* Loading screen. First page load of a visit (html.intro, set in index.html): visible at once and kept
+     for one whole crêpe (2.7s). Later loads: it fades in only when the hero photos take longer than
+     500ms, and then also stays 2.7s so it does not flash. Hard stop after 5s. */
   function initLoader() {
     const el = document.getElementById('loader');
     if (!el) return;
     const t0 = performance.now();
+    const intro = document.documentElement.classList.contains('intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches;
     const imgs = Array.from(document.querySelectorAll('.half img'));
     const ready = Promise.all(imgs.map(function (img) {
       return img.complete ? null : new Promise(function (r) { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); });
     }));
     Promise.race([ready, new Promise(function (r) { setTimeout(r, 5000); })]).then(function () {
       const shown = performance.now() - t0;
-      if (shown < 500) { el.remove(); return; } // never became visible
+      try { sessionStorage.setItem('peltier-seen', '1'); } catch (e) { /* ignore */ }
+      if (!intro && shown < 500) { el.remove(); return; } // never became visible
       setTimeout(function () {
         el.style.animation = 'none'; el.style.opacity = '1'; // hold, then fade out (transition in CSS)
         requestAnimationFrame(function () { requestAnimationFrame(function () { el.style.opacity = '0'; }); });
