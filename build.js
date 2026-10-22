@@ -42,8 +42,8 @@ async function main() {
   }
   await fs.writeFile(path.join(OUT, 'index.html'), html);
 
-  const [banner, avatar, logo512, favicon] = await Promise.all([
-    get('banner.webp'), get('avatar.webp'), get('logo-512x512.png'), get('logo-32x32-bg.png')
+  const [avatar, logo512, favicon] = await Promise.all([
+    get('avatar.webp'), get('logo-512x512.png'), get('logo-32x32-bg.png')
   ]);
 
   await fs.writeFile(path.join(IMG, 'simon.webp'), avatar);
@@ -52,9 +52,11 @@ async function main() {
   await sharp(logo512).resize(192, 192).png().toFile(path.join(IMG, 'logo-192.png'));
   await sharp(logo512).resize(180, 180).png().toFile(path.join(IMG, 'apple-touch-icon.png'));
 
-  // Simon's own photo, cut from the 1920x500 collage on peltier013.nl (inside the torn edges).
-  await sharp(banner).extract({ left: 310, top: 0, width: 480, height: 500 }).webp({ quality: 84 }).toFile(path.join(IMG, 'street.webp')); // Simon at the griddle, crowd
-  // The wagon at Fabriek 59 (Simon's photo, sent by Harold). Replace assets/wagon.webp with a larger original when there is one.
+  // Landing halves: the wagon at Fabriek 59 at dusk and Simon at the stall (photos from Harold, cropped in assets/).
+  // Rename when they change: images are cached for a year.
+  await fs.copyFile('assets/hero-ouioui.webp', path.join(IMG, 'hero-ouioui.webp'));
+  await fs.copyFile('assets/hero-street.webp', path.join(IMG, 'hero-street.webp'));
+  // The wagon photo the listing block shows until the Google listing photo takes over.
   await fs.copyFile('assets/wagon.webp', path.join(IMG, 'wagon.webp'));
   // The six crêpe photos, square around the whole crêpe (from the originals). Rename when they change: images are cached for a year
   for (const f of await fs.readdir('photos')) {
