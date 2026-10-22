@@ -98,10 +98,10 @@
       'gallery.kicker': 'Sorties du bilig', 'gallery.title': 'Nos best-sellers',
       'about.kicker': 'À propos', 'about.title': 'Bonjour ! Ici Simon,',
       'about.alt': 'Simon Peltier à son stand, souriant, une crêpe fraîche à la main',
-      'about.p1': 'J’ai grandi avec des racines françaises & belges et je suis venu à Tilburg en 2019 pour étudier. Voulant faire quelque chose de concret de ma vie, j’ai quitté l’université en 2023. Quelques expériences, mon amour de la cuisine française et de l’entrepreneuriat m’ont mené à créer Peltier.',
-      'about.p2': 'Depuis tout petit, j’ai dévoré d’innombrables crêpes. Je m’étais construit mon petit monde ici, mais il manquait encore quelque chose…',
-      'about.p3': '…alors j’ai essayé de faire des crêpes à la maison.\nEn septembre 2024, j’ai lancé un petit stand de crêpes sur le marché du Koningsplein à Tilburg. Porté par l’immense soutien de la communauté locale, j’ai su que je voulais poursuivre ce rêve. J’ai tenu le marché chaque semaine et mis tout mon cœur dans chaque crêpe.',
-      'about.p4': 'De fil en aiguille, j’ai rejoint des événements, des prestations traiteur et des marchés dans tout le Brabant. La famille s’est un peu agrandie et, en septembre 2026, après 9 mois de rénovation, nous avons ouvert notre propre adresse. Nous sommes heureux de vous accueillir à Oui, Oui!, le wagon de Fabriek59.',
+      'about.p1': 'J\'ai grandi avec des racines franco-belges et je suis arrivé à Tilburg en 2019 pour faire mes études. Réalisant que je voulais faire quelque chose de concret, j\'ai quitté l\'université en 2023. Quelques expériences, mon amour pour la cuisine française et l\'entrepreneuriat m\'ont mené à lancer "Peltier".',
+      'about.p2': 'Depuis mon plus jeune âge, j\'ai dévoré d\'innombrables crêpes. J\'ai créé mon petit monde ici, mais il me manquait encore quelque chose…',
+      'about.p3': '…alors j\'ai essayé de faire des crêpes chez moi.\nEn septembre 2024, j\'ai ouvert un petit stand de crêpes sur le marché de Tilburg. Grâce au soutien incroyable de la communauté locale, j\'ai voulu pousser ce rêve plus loin. Je suis retourné au marché chaque semaine et j\'ai mis tout mon cœur dans chaque crêpe.',
+      'about.p4': 'De fil en aiguille, j\'ai participé à des événements, fait des prestations traiteur et me suis déplacé sur les marchés du Brabant.\nLa famille s\'est agrandie et, en septembre 2026, après 9 mois de travaux, nous avons ouvert notre propre établissement. Nous sommes heureux de vous accueillir à bord de Oui, Oui!, le wagon de Fabriek59.',
       'contact.kicker': 'Contact', 'contact.title': 'Une question, une réservation ou une prestation ?',
       'contact.text': 'Festival, mariage, anniversaire, événement d’entreprise ou B2B : nous vous apportons l’authentique expérience française, adaptée à votre événement.\nContactez-nous par le canal de votre choix.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
@@ -290,9 +290,12 @@
 
   /* Google Maps embed of the listing (resolves it by name, no key) */
   const PLACE_Q = 'Oui, Oui! - by Peltier Crêpes & Galettes, Lovense Kanaaldijk 45-5, 5013 BJ Tilburg';
+  const loading = []; // what the loading screen waits for, besides the page's images (the map, the video)
   function renderPlace() {
     const frame = document.getElementById('place-frame');
-    if (frame) frame.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(PLACE_Q) + '&z=16&hl=' + lang + '&output=embed';
+    if (!frame) return;
+    if (!frame.src) loading.push(new Promise(function (r) { frame.addEventListener('load', r, { once: true }); }));
+    frame.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(PLACE_Q) + '&z=16&hl=' + lang + '&output=embed';
   }
 
   /* Oui, Oui! stage: the video follows the scroll. Progress 0 when the stage reaches the header, 1 when
@@ -305,7 +308,10 @@
     const video = document.getElementById('stage-video');
     if (!stage || !video) return;
     const pin = stage.firstElementChild;
-    video.src = window.innerWidth >= 720 ? '/video/wagon-1080.mp4' : '/video/wagon-540.mp4';
+    const src = window.innerWidth >= 720 ? '/video/wagon-1080.mp4' : '/video/wagon-540.mp4';
+    // The whole file is fetched up front and played from memory, so scrubbing never waits for the network
+    loading.push(fetch(src).then(function (r) { return r.ok ? r.blob() : Promise.reject(r.status); })
+      .then(function (b) { video.src = URL.createObjectURL(b); }, function () { video.src = src; }));
     let target = 0, current = 0, lastT = 0;
     const measure = function () {
       const top = parseFloat(getComputedStyle(pin).top) || 0;
@@ -328,19 +334,20 @@
     requestAnimationFrame(frame);
   }
 
-  /* Loading screen. First page load of a visit (html.intro, set in index.html): visible at once and kept
-     for one whole crêpe (2.7s). Later loads: it fades in only when the hero photos take longer than
-     500ms, and then also stays 2.7s so it does not flash. Hard stop after 5s. */
+  /* Loading screen: the crêpe cooks while the whole page loads (photos, fonts, the video, the map), so
+     everything is there once it lifts. First page load of a visit (html.intro, set in index.html): visible
+     at once and kept for at least one whole crêpe (2.7s). Later loads: it fades in only when loading takes
+     longer than 500ms, and then also stays 2.7s so it does not flash. Hard stop after 10s. */
   function initLoader() {
     const el = document.getElementById('loader');
     if (!el) return;
     const t0 = performance.now();
     const intro = document.documentElement.classList.contains('intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const imgs = Array.from(document.querySelectorAll('.half img'));
+    const imgs = Array.from(document.images).filter(function (img) { return img.loading !== 'lazy'; });
     const ready = Promise.all(imgs.map(function (img) {
       return img.complete ? null : new Promise(function (r) { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); });
-    }));
-    Promise.race([ready, new Promise(function (r) { setTimeout(r, 5000); })]).then(function () {
+    }).concat(loading, document.fonts ? [document.fonts.ready] : []));
+    Promise.race([ready, new Promise(function (r) { setTimeout(r, 10000); })]).then(function () {
       const shown = performance.now() - t0;
       try { sessionStorage.setItem('peltier-seen', '1'); } catch (e) { /* ignore */ }
       if (!intro && shown < 500) { el.remove(); return; } // never became visible
@@ -374,15 +381,14 @@
     });
     const y = document.getElementById('year');
     if (y) y.textContent = String(new Date().getFullYear());
-    initLoader();
     initMenu();
     initMarquees();
     initCarousel();
     initReveals();
     initDock();
     initStage();
-    // The Google embed needs ~5s to boot, so it starts right after the page's own assets instead of when scrolled near
-    if (document.readyState === 'complete') renderPlace(); else addEventListener('load', renderPlace, { once: true });
+    renderPlace();
+    initLoader(); // last: it waits for what the two above started
     loadNext();
   });
 })();
