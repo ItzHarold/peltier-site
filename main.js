@@ -296,31 +296,36 @@
   }
 
   /* Oui, Oui! stage: the video follows the scroll. Progress 0 when the stage reaches the header, 1 when
-     its pinned part is about to scroll away; the video's time is progress x duration. Phones get the
-     smaller file. iOS only lets a video seek once it has been "played", hence the play/pause on first touch. */
+     its pinned part is about to scroll away; that gives a target time, and a frame loop glides the
+     video towards it (same easing as the gallery), so wheel steps don't land as jumps and the picture
+     keeps moving a moment after the scroll stops. Phones get the smaller file. iOS only lets a video
+     seek once it has been "played", hence the play/pause on first touch. */
   function initStage() {
     const stage = document.getElementById('stage');
     const video = document.getElementById('stage-video');
     if (!stage || !video) return;
     const pin = stage.firstElementChild;
     video.src = window.innerWidth >= 720 ? '/video/wagon-1080.mp4' : '/video/wagon-540.mp4';
-    let queued = false;
-    const update = function () {
-      queued = false;
-      if (!video.duration) return;
+    let target = 0, current = 0, lastT = 0;
+    const measure = function () {
       const top = parseFloat(getComputedStyle(pin).top) || 0;
       const rect = stage.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, (top - rect.top) / (stage.offsetHeight - pin.offsetHeight)));
-      const t = progress * video.duration;
-      if (Math.abs(t - video.currentTime) > 0.02) video.currentTime = t;
+      target = Math.min(1, Math.max(0, (top - rect.top) / (stage.offsetHeight - pin.offsetHeight)));
     };
-    const onScroll = function () { if (!queued) { queued = true; requestAnimationFrame(update); } };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    video.addEventListener('loadedmetadata', update);
+    const frame = function (t) {
+      const dt = Math.min((t - lastT) / 1000, .05); lastT = t;
+      current += (target - current) * (1 - Math.exp(-dt / .28));
+      if (video.duration && Math.abs(current * video.duration - video.currentTime) > 1 / 60) video.currentTime = current * video.duration;
+      requestAnimationFrame(frame);
+    };
+    window.addEventListener('scroll', measure, { passive: true });
+    window.addEventListener('resize', measure);
+    video.addEventListener('loadedmetadata', function () { measure(); current = target; });
     document.addEventListener('touchstart', function () {
-      const p = video.play(); if (p && p.then) p.then(function () { video.pause(); update(); }).catch(function () {});
+      const p = video.play(); if (p && p.then) p.then(function () { video.pause(); }).catch(function () {});
     }, { once: true, passive: true });
+    measure(); current = target;
+    requestAnimationFrame(frame);
   }
 
   /* Loading screen. First page load of a visit (html.intro, set in index.html): visible at once and kept
