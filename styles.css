@@ -234,6 +234,7 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45
 /* Sections */
 section { scroll-margin-top: calc(var(--top-h) + 3px); }
 .branch, .gallery, .about { padding: clamp(3rem, 7vw, 5.5rem) 0; }
+.branch-ouioui { padding-top: 0; }
 .section-intro { font-size: 1.15rem; max-width: 56ch; margin-bottom: 1.75rem; }
 /* Section heading with a button at the top right (wraps under the title on narrow screens) */
 .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: .6rem 1.5rem; margin-bottom: .5rem; }
@@ -277,22 +278,27 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 .next-text { white-space: pre-line; }
 .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
 
-/* Google listing (Oui Oui): the listing's photo with its rating, next to the Google Maps embed */
-.place { display: grid; gap: 1rem; margin-top: 1.25rem; }
-.place-photo, .place-map { margin: 0; border-radius: var(--r-card); overflow: hidden; background: var(--y-200); padding: 6px; }
-.place-photo { position: relative; }
-.place-photo img { width: 100%; height: 300px; object-fit: cover; border-radius: calc(var(--r-card) - 6px); }
-.place-rating {
-  position: absolute; left: 18px; bottom: 18px; padding: .4rem .9rem; border-radius: var(--r-pill);
-  background: var(--y-600); color: var(--ink); font-weight: 700; text-decoration: none; font-size: .95rem;
+/* Oui, Oui! stage: a tall block whose inner part stays pinned under the header for one screen height;
+   main.js scrubs the video with the scroll position. Text sits on a dark fade at the bottom. */
+.stage { height: 340vh; }
+.stage-pin {
+  position: sticky; top: calc(var(--top-h) + 3px); overflow: hidden; background: #1C1917;
+  height: calc(100vh - var(--top-h) - 3px); height: calc(100svh - var(--top-h) - 3px);
 }
-.place-rating:hover { background: var(--y-500); }
-.place-credit { position: absolute; right: 14px; bottom: 14px; padding: .15rem .55rem; border-radius: var(--r-pill); background: rgba(255, 255, 255, .85); color: var(--ink-soft); font-size: .75rem; }
-.place-map iframe { display: block; width: 100%; height: 300px; border: 0; border-radius: calc(var(--r-card) - 6px); background: var(--y-100); }
-@media (min-width: 720px) {
-  .place { grid-template-columns: 1fr 1.4fr; gap: 1.25rem; }
-  .place-photo img, .place-map iframe { height: 420px; }
-}
+.stage-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.stage-pin::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(20, 10, 8, .78) 0%, rgba(20, 10, 8, .4) 38%, rgba(20, 10, 8, 0) 65%); pointer-events: none; }
+.stage-text { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; color: var(--white); padding-bottom: clamp(1.5rem, 6vh, 4rem); }
+.stage-text .kicker { color: var(--y-200); }
+.stage-text h2 { color: var(--white); text-shadow: 0 2px 14px rgba(0, 0, 0, .5); }
+.stage-text .section-intro { color: var(--white); margin-bottom: 0; text-shadow: 0 1px 8px rgba(0, 0, 0, .5); }
+@media (max-width: 899px) { .stage-text { padding-bottom: calc(76px + 1.25rem); } } /* above the action dock */
+.branch-ouioui > .wrap { padding-top: clamp(2.5rem, 6vw, 4rem); }
+
+/* Google Maps embed of the listing */
+.place { margin-top: 1.25rem; }
+.place-map { margin: 0; border-radius: var(--r-card); overflow: hidden; background: var(--y-200); padding: 6px; }
+.place-map iframe { display: block; width: 100%; height: 320px; border: 0; border-radius: calc(var(--r-card) - 6px); background: var(--y-100); }
+@media (min-width: 720px) { .place-map iframe { height: 420px; } }
 
 /* Carousel: the six crêpe photos as polaroids, drifting from left to right (main.js moves the track and
    makes it draggable). The box fades out at both sides and leaves room below for the shadows. */

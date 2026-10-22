@@ -35,8 +35,7 @@
       'contact.kicker': 'Contact', 'contact.title': 'Een vraag, een reservering of een boeking?',
       'contact.text': 'Festival, bruiloft, verjaardag, bedrijfsborrel of B2B: wij brengen de authentieke Franse ervaring, op maat van jouw evenement. Neem contact op via het kanaal dat jij het fijnst vindt.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
-      'place.reviews': 'Google-reviews', 'place.photo': 'Foto via Google Maps',
-      'foot.tag': 'Food stall & brunchcafé', 'foot.contact': 'Contact', 'foot.follow': 'Volg ons'
+            'foot.tag': 'Food stall & brunchcafé', 'foot.contact': 'Contact', 'foot.follow': 'Volg ons'
     },
     en: {
       _title: 'Peltier Crêpes & Galettes | Food stall & brunch café, Tilburg',
@@ -71,8 +70,7 @@
       'contact.kicker': 'Contact', 'contact.title': 'A question, a reservation, or a booking?',
       'contact.text': 'Festival, wedding, birthday, company gathering or B2B, we bring you the authentic French experience, tailored to your event. Contact us via your preferred channel.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
-      'place.reviews': 'Google reviews', 'place.photo': 'Photo via Google Maps',
-      'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Follow us'
+            'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Follow us'
     },
     fr: {
       _title: 'Peltier Crêpes & Galettes | Food stall & brunch café, Tilburg',
@@ -107,8 +105,7 @@
       'contact.kicker': 'Contact', 'contact.title': 'Une question, une réservation ou une prestation ?',
       'contact.text': 'Festival, mariage, anniversaire, événement d’entreprise ou B2B : nous vous apportons l’authentique expérience française, adaptée à votre événement. Contactez-nous par le canal de votre choix.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
-      'place.reviews': 'avis Google', 'place.photo': 'Photo via Google Maps',
-      'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Suivez-nous'
+            'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Suivez-nous'
     }
   };
   const LOCALE = { nl: 'nl-NL', en: 'en-GB', fr: 'fr-FR' };
@@ -291,33 +288,39 @@
     onScroll();
   }
 
-  /* Google listing: map embed (resolves the listing by name, no key) + photo and rating from /api/place */
+  /* Google Maps embed of the listing (resolves it by name, no key) */
   const PLACE_Q = 'Oui, Oui! - by Peltier Crêpes & Galettes, Lovense Kanaaldijk 45-5, 5013 BJ Tilburg';
-  let placeData = null;
   function renderPlace() {
     const frame = document.getElementById('place-frame');
     if (frame) frame.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(PLACE_Q) + '&z=16&hl=' + lang + '&output=embed';
-    const d = placeData;
-    if (!d || !d.ok) return;
-    const img = document.getElementById('place-img');
-    const rating = document.getElementById('place-rating');
-    const credit = document.getElementById('place-credit');
-    if (d.photos && d.photos[0]) {
-      img.src = d.photos[0].src; img.removeAttribute('width'); img.removeAttribute('height');
-      credit.textContent = T[lang]['place.photo'] + (d.photos[0].by ? ' · ' + d.photos[0].by : '');
-      credit.hidden = false;
-    }
-    if (d.rating) {
-      rating.textContent = '★ ' + d.rating.toLocaleString(LOCALE[lang], { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' · ' + d.count + ' ' + T[lang]['place.reviews'];
-      if (d.mapsUrl) rating.href = d.mapsUrl;
-      rating.hidden = false;
-    }
   }
-  function loadPlace() {
-    renderPlace();
-    fetch('/api/place').then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (d) { placeData = d; renderPlace(); })
-      .catch(function () { /* keep our own photo */ });
+
+  /* Oui, Oui! stage: the video follows the scroll. Progress 0 when the stage reaches the header, 1 when
+     its pinned part is about to scroll away; the video's time is progress x duration. Phones get the
+     smaller file. iOS only lets a video seek once it has been "played", hence the play/pause on first touch. */
+  function initStage() {
+    const stage = document.getElementById('stage');
+    const video = document.getElementById('stage-video');
+    if (!stage || !video) return;
+    const pin = stage.firstElementChild;
+    video.src = window.innerWidth >= 720 ? '/video/wagon-720.mp4' : '/video/wagon-540.mp4';
+    let queued = false;
+    const update = function () {
+      queued = false;
+      if (!video.duration) return;
+      const top = parseFloat(getComputedStyle(pin).top) || 0;
+      const rect = stage.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (top - rect.top) / (stage.offsetHeight - pin.offsetHeight)));
+      const t = progress * video.duration;
+      if (Math.abs(t - video.currentTime) > 0.02) video.currentTime = t;
+    };
+    const onScroll = function () { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    video.addEventListener('loadedmetadata', update);
+    document.addEventListener('touchstart', function () {
+      const p = video.play(); if (p && p.then) p.then(function () { video.pause(); update(); }).catch(function () {});
+    }, { once: true, passive: true });
   }
 
   /* Loading screen. First page load of a visit (html.intro, set in index.html): visible at once and kept
@@ -372,7 +375,8 @@
     initCarousel();
     initReveals();
     initDock();
-    loadPlace();
+    initStage();
+    renderPlace();
     loadNext();
   });
 })();

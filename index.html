@@ -207,13 +207,21 @@
     </div>
   </section>
 
-  <!-- Oui, Oui! brunch café -->
+  <!-- Oui, Oui! brunch café. The video of the wagon plays along with the scroll: the stage is tall,
+       its inner block stays pinned at the top while the video is scrubbed from 0 to the end, and only
+       then does the page move on to the cards. -->
   <section class="branch branch-ouioui" id="oui-oui">
+    <div class="stage" id="stage">
+      <div class="stage-pin">
+        <video id="stage-video" class="stage-video" muted playsinline preload="auto" poster="/images/wagon-poster.webp" aria-hidden="true"></video>
+        <div class="wrap stage-text">
+          <p class="kicker kicker-name" data-i18n="ouioui.kicker">Oui, Oui!</p>
+          <h2 data-i18n="ouioui.title">Franse brunch in een vintage treinwagon</h2>
+          <p class="section-intro" data-i18n="ouioui.text">Sinds september 2026 hebben we ons eigen brunchcafé bij Fabriek59. Schuif aan voor een gezellige rit in onze knusse treinwagon. Crêpes, galettes, Franse specialiteiten, warme dranken.</p>
+        </div>
+      </div>
+    </div>
     <div class="wrap">
-      <p class="kicker kicker-name reveal" data-i18n="ouioui.kicker">Oui, Oui!</p>
-      <h2 class="reveal" data-i18n="ouioui.title">Franse brunch in een vintage treinwagon</h2>
-      <p class="section-intro reveal" data-i18n="ouioui.text">Sinds september 2026 hebben we ons eigen brunchcafé bij Fabriek59. Schuif aan voor een gezellige rit in onze knusse treinwagon. Crêpes, galettes, Franse specialiteiten, warme dranken.</p>
-
       <div class="cards">
         <article class="spot reveal" style="--i:1">
           <p class="spot-kicker" data-i18n="ouioui.where.kicker">Waar?</p>
@@ -234,14 +242,8 @@
         </article>
       </div>
 
-      <!-- The Google Business listing: photo + rating via /api/place (Places API, needs a key; falls back to our own photo)
-           and the Google Maps embed, which resolves the listing by name without a key. -->
+      <!-- The Google Maps embed resolves the business listing by name, no key needed -->
       <div class="place reveal" id="place">
-        <figure class="place-photo">
-          <img id="place-img" src="/images/wagon.webp" width="382" height="510" alt="De treinwagon van Oui, Oui! bij Fabriek59" loading="lazy" decoding="async">
-          <a class="place-rating" id="place-rating" href="https://www.google.com/maps/search/?api=1&query=Oui%2C+Oui!+-+by+Peltier+Cr%C3%AApes+%26+Galettes%2C+Lovense+Kanaaldijk+45-5%2C+Tilburg" target="_blank" rel="noopener" hidden></a>
-          <figcaption class="place-credit" id="place-credit" hidden></figcaption>
-        </figure>
         <div class="place-map">
           <iframe id="place-frame" title="Google Maps: Oui, Oui! by Peltier, Fabriek59 Tilburg" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
