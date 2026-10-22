@@ -56,9 +56,9 @@ async function main() {
   await sharp(banner).extract({ left: 310, top: 0, width: 480, height: 500 }).webp({ quality: 84 }).toFile(path.join(IMG, 'street.webp')); // Simon at the griddle, crowd
   // The wagon at Fabriek 59 (Simon's photo, sent by Harold). Replace assets/wagon.webp with a larger original when there is one.
   await fs.copyFile('assets/wagon.webp', path.join(IMG, 'wagon.webp'));
-  // The six crêpes, whole, cut out of the original photos (transparent webp). Rename when they change: images are cached for a year
+  // The six crêpe photos, square around the whole crêpe (from the originals). Rename when they change: images are cached for a year
   for (const f of await fs.readdir('photos')) {
-    if (f.endsWith('.webp')) await fs.copyFile(path.join('photos', f), path.join(IMG, 'crepe-full-' + f));
+    if (f.endsWith('.webp')) await fs.copyFile(path.join('photos', f), path.join(IMG, 'crepe-polaroid-' + f));
   }
 
   // Social share image: butter background, logo, oval portrait (matches the site's frames)
