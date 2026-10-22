@@ -108,14 +108,14 @@ body.scrolled .top { box-shadow: 0 6px 24px rgba(120, 48, 49, .12); }
 .menu > a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--wine); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
 .menu > a:hover::after, .menu > a:focus-visible::after { transform: scaleX(1); }
 .menu-tools { display: flex; align-items: center; gap: .75rem; }
-.burger {
-  margin-left: auto; display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
-  width: 44px; height: 44px; padding: 0 9px; border: 0; border-radius: 50%; background: transparent; cursor: pointer;
+.burger { /* crêpes to open, crossed rozells to close */
+  margin-left: auto; display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; padding: 0; border: 0; background: transparent; cursor: pointer; color: var(--ink);
 }
-.burger span { display: block; height: 3px; border-radius: 3px; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
-body.nav-open .burger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-body.nav-open .burger span:nth-child(2) { opacity: 0; }
-body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.burger svg { width: 40px; height: 40px; display: block; }
+.burger .ico-rake { display: none; width: 30px; height: 30px; }
+body.nav-open .burger .ico-crepes { display: none; }
+body.nav-open .burger .ico-rake { display: block; }
 @media (max-width: 899px) {
   .menu {
     position: fixed; inset: calc(var(--top-h) + 3px) 0 0 0; z-index: 40;
