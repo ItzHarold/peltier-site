@@ -360,8 +360,7 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 
 /* Loading screen. Hidden without JS. On the first page load of a visit (html.intro) it shows at once
    and stays for one whole crêpe; afterwards it only fades in when the hero photos take longer than
-   500ms. main.js removes it. The crêpe is two faces in 3D: the pale batter side that spreads and
-   browns, and the cooked side revealed by the flip. */
+   500ms. main.js removes it. The crêpe is poured, spread with the rozell, browns, and is served. */
 .loader { display: none; }
 .js .loader {
   position: fixed; inset: 0; z-index: 200; display: grid; place-content: center; justify-items: center; gap: .4rem;
@@ -377,16 +376,12 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
   background: radial-gradient(circle at 50% 42%, #4A4744 0%, #2B2928 62%, #171615 100%);
   box-shadow: inset 0 0 0 6px #1D1C1B, inset 0 0 0 9px #3A3837, 0 14px 30px rgba(120, 48, 49, .18);
 }
-.crepe { /* pour, spread (scale), lift, serve (fade) */
+.crepe { /* pour, spread (scale), serve (fade) */
   position: absolute; left: 20px; top: 20px; width: 128px; height: 128px;
   animation: crepe 3.4s cubic-bezier(.4, 0, .3, 1) infinite;
 }
-.flip { /* the turn, in its own 3D context */
-  position: absolute; inset: 0; transform-style: preserve-3d;
-  animation: flip 3.4s cubic-bezier(.4, 0, .3, 1) infinite;
-}
 .side {
-  position: absolute; inset: 0; backface-visibility: hidden;
+  position: absolute; inset: 0;
   border-radius: 49% 51% 50% 50% / 51% 49% 51% 49%; /* a slightly hand-poured edge */
 }
 .front { background-color: #F7E9BE; animation: batter 3.4s linear infinite; }
@@ -400,36 +395,16 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
     radial-gradient(circle at 52% 50%, rgba(168, 108, 46, .3) 0 2.5%, transparent 5%),
     radial-gradient(circle at 50% 50%, rgba(232, 191, 106, .35) 0%, rgba(214, 160, 70, .9) 100%);
 }
-.back { /* the cooked side: deeper gold, mottled by the griddle */
-  transform: rotateX(180deg);
-  background:
-    radial-gradient(circle at 28% 30%, rgba(110, 56, 18, .55) 0 4.5%, transparent 7%),
-    radial-gradient(circle at 58% 22%, rgba(110, 56, 18, .5) 0 3.5%, transparent 6%),
-    radial-gradient(circle at 76% 44%, rgba(110, 56, 18, .5) 0 5%, transparent 7.5%),
-    radial-gradient(circle at 66% 70%, rgba(110, 56, 18, .5) 0 4%, transparent 6.5%),
-    radial-gradient(circle at 40% 76%, rgba(110, 56, 18, .5) 0 5%, transparent 7.5%),
-    radial-gradient(circle at 22% 56%, rgba(110, 56, 18, .45) 0 3.5%, transparent 6%),
-    radial-gradient(circle at 50% 50%, rgba(110, 56, 18, .4) 0 3%, transparent 5.5%),
-    radial-gradient(circle at 46% 36%, rgba(110, 56, 18, .3) 0 2.5%, transparent 5%),
-    radial-gradient(circle at 60% 58%, rgba(110, 56, 18, .3) 0 2.5%, transparent 5%),
-    radial-gradient(circle at 50% 50%, #DDA852 0%, #C98A3A 62%, #B06A26 100%);
-}
 .rozell { /* the T-shaped spreader, circling while the batter spreads */
   position: absolute; left: 50%; top: 50%; width: 74px; height: 5px; margin-top: -2px; border-radius: 3px;
   background: #D9B98A; transform-origin: 0 50%; opacity: 0; z-index: 2; animation: rozell 3.4s linear infinite;
 }
 .rozell::after { content: ''; position: absolute; right: 0; top: -10px; width: 5px; height: 25px; border-radius: 3px; background: #C9A26E; }
 @keyframes crepe {
-  0%        { transform: translateY(0) scale(.1); opacity: 0; }
+  0%        { transform: scale(.1); opacity: 0; }
   3%        { opacity: 1; }
-  22%, 60%  { transform: translateY(0) scale(1); }
-  68%       { transform: translateY(-22px) scale(1); }
-  76%, 90%  { transform: translateY(0) scale(1); opacity: 1; }
-  100%      { transform: translateY(0) scale(.92); opacity: 0; }
-}
-@keyframes flip {
-  0%, 60%   { transform: perspective(520px) rotateX(0); }
-  76%, 100% { transform: perspective(520px) rotateX(180deg); }
+  22%, 90%  { transform: scale(1); opacity: 1; }
+  100%      { transform: scale(.92); opacity: 0; }
 }
 @keyframes batter { 0%, 22% { background-color: #F7E9BE; } 58%, 100% { background-color: #E6BD68; } }
 @keyframes cooked { 0%, 26% { opacity: 0; } 58%, 100% { opacity: 1; } }
@@ -440,8 +415,8 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
   26%, 100% { opacity: 0; transform: rotate(600deg) scaleX(1); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .crepe, .flip, .front, .front::after, .rozell { animation: none; }
-  .flip { transform: rotateX(180deg); } /* a finished crêpe, no motion */
+  .crepe, .front, .front::after, .rozell { animation: none; }
+  .front { background-color: #E6BD68; } .front::after { opacity: 1; } /* a finished crêpe, no motion */
   .js .loader { animation-duration: .01s; }
 }
 
