@@ -39,9 +39,9 @@ The Food Stall section lists the weekly spots itself (Saturday market, The City 
 "Coming up": the next three events from Simon's "Event days" calendar (`AGENDA_ICS_URL`). Fewer planned →
 fewer boxes; none → the block is not shown. Per event:
 
-- Repeating events (the weekly series) are never shown; one-off events are.
+- Every one-off event shows, with its title exactly as typed; only events marked cancelled are skipped.
+- Repeating events (the weekly series) are never shown.
 - **Location** field → shown as the address, plus a Route button.
 - **Notes** field → everything after a line starting with `Site:` is shown (max 400 chars); the rest stays private.
-- Titles starting with `[` or `(` (e.g. `[cancelled] …`, `[MAYBE] …`) are never shown.
 
 Feed is cached on the CDN for 15 minutes; the listing for a day; listing photos for a week.
