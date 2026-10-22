@@ -303,7 +303,7 @@
     const video = document.getElementById('stage-video');
     if (!stage || !video) return;
     const pin = stage.firstElementChild;
-    video.src = window.innerWidth >= 720 ? '/video/wagon-720.mp4' : '/video/wagon-540.mp4';
+    video.src = window.innerWidth >= 720 ? '/video/wagon-1080.mp4' : '/video/wagon-540.mp4';
     let queued = false;
     const update = function () {
       queued = false;

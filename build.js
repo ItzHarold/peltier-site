@@ -56,9 +56,9 @@ async function main() {
   await sharp(banner).extract({ left: 310, top: 0, width: 480, height: 500 }).webp({ quality: 84 }).toFile(path.join(IMG, 'street.webp')); // Simon at the griddle, crowd
   // The wagon at Fabriek 59 (Simon's photo, sent by Harold). Replace assets/wagon.webp with a larger original when there is one.
   await fs.copyFile('assets/wagon.webp', path.join(IMG, 'wagon.webp'));
-  // The wagon video for the Oui, Oui! stage (scrubbed by scroll): full size, a phone size, and its first frame
+  // The wagon video for the Oui, Oui! stage (scrubbed by scroll): upscaled 1080p for desktop, 540p for phones, and its first frame
   await fs.mkdir(path.join(OUT, 'video'), { recursive: true });
-  for (const f of ['wagon-720.mp4', 'wagon-540.mp4']) await fs.copyFile(path.join('assets', f), path.join(OUT, 'video', f));
+  for (const f of ['wagon-1080.mp4', 'wagon-540.mp4']) await fs.copyFile(path.join('assets', f), path.join(OUT, 'video', f));
   await fs.copyFile('assets/wagon-poster.webp', path.join(IMG, 'wagon-poster.webp'));
   // The six crêpe photos, square around the whole crêpe (from the originals). Rename when they change: images are cached for a year
   for (const f of await fs.readdir('photos')) {

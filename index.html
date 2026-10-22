@@ -81,7 +81,7 @@
   <p class="loader-hi" aria-hidden="true">Bonjour!</p>
   <p class="loader-text" data-i18n="loading">Even geduld, de crêpe ligt op de bakplaat…</p>
 </div>
-<a class="skip" href="#street-food" data-i18n="skip">Naar de inhoud</a>
+<a class="skip" href="#oui-oui" data-i18n="skip">Naar de inhoud</a>
 
 <header class="top">
   <div class="wrap top-inner">
@@ -89,8 +89,8 @@
       <img src="/images/logo-192.png" width="48" height="48" alt="">
     </a>
     <nav class="menu" id="menu" aria-label="Hoofdmenu">
-      <a href="#street-food" data-i18n="nav.street">Food Stall</a>
       <a href="#oui-oui" data-i18n="nav.ouioui">Oui, Oui!</a>
+      <a href="#street-food" data-i18n="nav.street">Food Stall</a>
       <a href="#galerij" data-i18n="nav.gallery">Galerij</a>
       <a href="#over" data-i18n="nav.about">Over ons</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
@@ -148,6 +148,50 @@
     </div>
   </div>
 
+  <!-- Oui, Oui! brunch café. The video of the wagon plays along with the scroll: the stage is tall,
+       its inner block stays pinned at the top while the video is scrubbed from 0 to the end, and only
+       then does the page move on to the cards. -->
+  <section class="branch branch-ouioui" id="oui-oui">
+    <div class="stage" id="stage">
+      <div class="stage-pin">
+        <video id="stage-video" class="stage-video" muted playsinline preload="auto" poster="/images/wagon-poster.webp" aria-hidden="true"></video>
+        <div class="wrap stage-text">
+          <p class="kicker kicker-name" data-i18n="ouioui.kicker">Oui, Oui!</p>
+          <h2 data-i18n="ouioui.title">Franse brunch in een vintage treinwagon</h2>
+          <p class="section-intro" data-i18n="ouioui.text">Sinds september 2026 hebben we ons eigen brunchcafé bij Fabriek59. Schuif aan voor een gezellige rit in onze knusse treinwagon. Crêpes, galettes, Franse specialiteiten, warme dranken.</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="cards">
+        <article class="spot reveal" style="--i:1">
+          <p class="spot-kicker" data-i18n="ouioui.where.kicker">Waar?</p>
+          <h3 data-i18n="ouioui.where.title">Rode wagon bij Fabriek59</h3>
+          <address>Lovense Kanaaldijk 45-5<br>5013 BJ Tilburg</address>
+        </article>
+
+        <article class="spot reveal" style="--i:2">
+          <p class="spot-kicker" data-i18n="ouioui.hours.kicker">Openingstijden</p>
+          <h3 data-i18n="ouioui.hours.title">Zondag 9:30 – 17:30</h3>
+          <p data-i18n="ouioui.hours.text">Alleen op zondag. Dat houdt het bijzonder.</p>
+          <!--pdf:ouioui-->
+          <div class="spot-actions">
+            <!-- main.js points this at the Dutch or the English PDF with the language (French gets English) -->
+            <a class="btn btn-secondary" id="brunch-menu" href="/menu/oui-oui-nl.pdf" target="_blank" rel="noopener" data-i18n="ouioui.menu">Brunchmenu</a>
+          </div>
+          <!--/pdf:ouioui-->
+        </article>
+      </div>
+
+      <!-- The Google Maps embed resolves the business listing by name, no key needed -->
+      <div class="place reveal" id="place">
+        <div class="place-map">
+          <iframe id="place-frame" title="Google Maps: Oui, Oui! by Peltier, Fabriek59 Tilburg" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Food Stall -->
   <section class="branch branch-street" id="street-food">
     <div class="wrap">
@@ -204,50 +248,6 @@
         <a class="btn btn-primary btn-arrow" href="/menu/street-food.pdf" target="_blank" rel="noopener" data-i18n="menu.check">Bekijk de kaart</a>
       </div>
       <!--/pdf:street-->
-    </div>
-  </section>
-
-  <!-- Oui, Oui! brunch café. The video of the wagon plays along with the scroll: the stage is tall,
-       its inner block stays pinned at the top while the video is scrubbed from 0 to the end, and only
-       then does the page move on to the cards. -->
-  <section class="branch branch-ouioui" id="oui-oui">
-    <div class="stage" id="stage">
-      <div class="stage-pin">
-        <video id="stage-video" class="stage-video" muted playsinline preload="auto" poster="/images/wagon-poster.webp" aria-hidden="true"></video>
-        <div class="wrap stage-text">
-          <p class="kicker kicker-name" data-i18n="ouioui.kicker">Oui, Oui!</p>
-          <h2 data-i18n="ouioui.title">Franse brunch in een vintage treinwagon</h2>
-          <p class="section-intro" data-i18n="ouioui.text">Sinds september 2026 hebben we ons eigen brunchcafé bij Fabriek59. Schuif aan voor een gezellige rit in onze knusse treinwagon. Crêpes, galettes, Franse specialiteiten, warme dranken.</p>
-        </div>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="cards">
-        <article class="spot reveal" style="--i:1">
-          <p class="spot-kicker" data-i18n="ouioui.where.kicker">Waar?</p>
-          <h3 data-i18n="ouioui.where.title">Rode wagon bij Fabriek59</h3>
-          <address>Lovense Kanaaldijk 45-5<br>5013 BJ Tilburg</address>
-        </article>
-
-        <article class="spot reveal" style="--i:2">
-          <p class="spot-kicker" data-i18n="ouioui.hours.kicker">Openingstijden</p>
-          <h3 data-i18n="ouioui.hours.title">Zondag 9:30 – 17:30</h3>
-          <p data-i18n="ouioui.hours.text">Alleen op zondag. Dat houdt het bijzonder.</p>
-          <!--pdf:ouioui-->
-          <div class="spot-actions">
-            <!-- main.js points this at the Dutch or the English PDF with the language (French gets English) -->
-            <a class="btn btn-secondary" id="brunch-menu" href="/menu/oui-oui-nl.pdf" target="_blank" rel="noopener" data-i18n="ouioui.menu">Brunchmenu</a>
-          </div>
-          <!--/pdf:ouioui-->
-        </article>
-      </div>
-
-      <!-- The Google Maps embed resolves the business listing by name, no key needed -->
-      <div class="place reveal" id="place">
-        <div class="place-map">
-          <iframe id="place-frame" title="Google Maps: Oui, Oui! by Peltier, Fabriek59 Tilburg" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -342,8 +342,8 @@
 </footer>
 
 <nav class="dock" aria-label="Snelle acties">
-  <a href="#street-food" data-i18n="hero.street">Food Stall</a>
   <a href="#oui-oui" data-i18n="hero.ouioui">Oui, Oui!</a>
+  <a href="#street-food" data-i18n="hero.street">Food Stall</a>
   <a class="dock-wa" href="https://wa.me/31614039393" target="_blank" rel="noopener">WhatsApp</a>
 </nav>
 
