@@ -268,8 +268,9 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 .spot address { font-weight: 600; margin-bottom: .6rem; }
 .hours { color: var(--ink-soft); margin-bottom: .5rem; }
 .spot-actions { margin-top: auto; padding-top: 1.25rem; display: flex; align-items: center; justify-content: flex-start; gap: 1rem; flex-wrap: wrap; }
-/* Coming up: one box per calendar event, three across on desktop (a single event keeps its third) */
-.cards-3 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+/* Coming up: one box per calendar event; the row is always as wide as the weekly cards:
+   3 events -> 3 equal columns, 2 -> 2, 1 -> the full width. Stacked on phones like the other cards. */
+@media (min-width: 720px) { .cards-3 { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); } }
 .spot-next { background: var(--y-200); }
 .next-text { white-space: pre-line; }
 .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
