@@ -248,7 +248,7 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
 /* Scroll reveals: fade up, staggered with --i (JS adds .in when the element enters the viewport) */
 .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .8s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i, 0) * 90ms); }
 .js .reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } .half, .half img, .spot, .btn { transition: none; } .ticker-track, .carousel-track { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } .half, .half img, .spot, .btn { transition: none; } .ticker-track, .carousel-track, .carousel figure { animation: none; } }
 
 /* Cards: identical rounded cards, one action each, always bottom-left */
 .cards { display: grid; gap: 1.25rem; align-items: stretch; }
@@ -294,22 +294,21 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
   .place-photo img, .place-map iframe { height: 420px; }
 }
 
-/* Carousel: the six crêpes drift from left to right, pause on hover/touch, and loop seamlessly
-   (JS duplicates the set once; the keyframe moves the track by exactly one set). */
+/* Carousel: the six crêpes (cut out, transparent) drift from left to right and bob a little, pause on
+   hover/touch, and loop seamlessly (JS duplicates the set once; the keyframe moves the track by one set). */
 .gallery { background: var(--white); border-top: 3px solid var(--y-200); border-bottom: 3px solid var(--y-200); }
 .gallery-head { margin-bottom: 1.5rem; }
 .gallery-head h2 { margin-bottom: 0; }
-.carousel { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
+.carousel { overflow: hidden; padding: .75rem 0; -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
 .carousel-track { display: flex; gap: .9rem; width: max-content; animation: drift 40s linear infinite; }
 .carousel:hover .carousel-track, .carousel:focus-within .carousel-track, .carousel.paused .carousel-track { animation-play-state: paused; }
 @keyframes drift { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-.carousel figure { position: relative; margin: 0; flex: 0 0 auto; width: min(66vw, 300px); border-radius: var(--r-card); overflow: hidden; background: var(--y-100); }
-.carousel img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 1s cubic-bezier(.2, .7, .2, 1); }
+.carousel figure { margin: 0; flex: 0 0 auto; width: min(66vw, 300px); animation: bob 5.5s ease-in-out infinite; }
+.carousel figure:nth-child(3n+2) { animation-delay: -1.8s; }
+.carousel figure:nth-child(3n) { animation-delay: -3.7s; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.carousel img { width: 100%; aspect-ratio: 1; object-fit: contain; filter: drop-shadow(0 14px 18px rgba(120, 48, 49, .18)); transition: transform 1s cubic-bezier(.2, .7, .2, 1); }
 .carousel figure:hover img { transform: scale(1.06); }
-.carousel figcaption {
-  position: absolute; left: 12px; bottom: 12px; padding: .35rem .9rem; border-radius: var(--r-pill);
-  background: var(--y-600); color: var(--ink); font-weight: 700; font-size: .95rem;
-}
 @media (min-width: 720px) { .carousel figure { width: 320px; } .carousel-track { gap: 1.1rem; } }
 
 /* About: the oval portrait takes the whole first column */
