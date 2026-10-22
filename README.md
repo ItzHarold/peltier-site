@@ -7,7 +7,7 @@ https://peltier-crepes-galettes.vercel.app (Vercel project `peltier-crepes-galet
 
 ```sh
 npm install
-npm run build      # writes public/ (fetches the logo/portrait from peltier013.nl, needs network)
+npm run build      # writes public/ from assets/, photos/ and menu/ (no network needed)
 npm test           # node --test
 ```
 
@@ -22,6 +22,8 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 | `api/agenda.js` + `lib/ics.js` | next three one-off events from Simon's calendar feed (dependency-free iCalendar parser) |
 | `api/place.js` | Google Business listing (photo, rating) through the Places API (New) |
 | `photos/` | the six crêpe photos from the Figma "Crêpes" page (carousel) |
+| `assets/logo-*.png` | the logo (512 for the page, 32 for the favicon) |
+| `assets/about-simon.webp` | the About portrait, full size |
 | `assets/hero-*.webp` | the two landing photos (wagon at dusk, Simon at the stall), pre-cropped; rename on change (cached a year) |
 | `assets/wagon.webp` | the wagon photo used until the Google listing photo takes over |
 | `menu/` | `oui-oui-en.pdf` + `oui-oui-nl.pdf` (the brunch menu, served by language; French gets English); drop `street-food.pdf` here and the Food Stall "Check the menu" button appears |

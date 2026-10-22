@@ -1,23 +1,15 @@
-/* Build: copy static files into public/ and generate the site's images from the brand
-   assets on peltier013.nl (logo, portrait, photo collage). Menu PDFs are included when present. */
+/* Build: copy static files into public/ and generate the site's images from assets/ (logo, photos).
+   Menu PDFs are included when present. No network needed. */
 const fs = require('fs/promises');
 const path = require('path');
 const sharp = require('sharp');
 
-const SRC = 'https://peltier013.nl/assets/images/';
-const UA = 'PeltierSiteBuild/1.0 (https://peltier-crepes-galettes.vercel.app; Ponte Digital) node-fetch';
 const OUT = 'public';
 const IMG = path.join(OUT, 'images');
 const BUTTER = '#FEEA92';
 
 // Menu PDFs. Drop the files in menu/ and the matching button appears (the brunch menu needs both languages).
 const PDFS = { street: ['street-food.pdf'], ouioui: ['oui-oui-en.pdf', 'oui-oui-nl.pdf'] };
-
-async function get(name) {
-  const r = await fetch(SRC + name, { headers: { 'User-Agent': UA } });
-  if (!r.ok) throw new Error(`Download failed: ${name} (${r.status})`);
-  return Buffer.from(await r.arrayBuffer());
-}
 
 async function main() {
   await fs.rm(OUT, { recursive: true, force: true });
@@ -42,7 +34,7 @@ async function main() {
   }
   await fs.writeFile(path.join(OUT, 'index.html'), html);
 
-  const [logo512, favicon] = await Promise.all([get('logo-512x512.png'), get('logo-32x32-bg.png')]);
+  const [logo512, favicon] = await Promise.all([fs.readFile('assets/logo-512x512.png'), fs.readFile('assets/logo-32x32-bg.png')]);
   const avatar = await fs.readFile('assets/about-simon.webp'); // Simon with a crêpe (photo from Harold), full size
 
   await fs.writeFile(path.join(IMG, 'about-simon.webp'), avatar);
