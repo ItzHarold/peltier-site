@@ -77,7 +77,7 @@
       skip: 'Aller au contenu', loading: 'Un instant, la crêpe est sur le bilig…',
       'nav.street': 'Food Stall', 'nav.ouioui': 'Oui, Oui!', 'nav.gallery': 'Galerie', 'nav.about': 'À propos', 'nav.contact': 'Contact',
       'hero.title': 'Peltier Crêpes & Galettes',
-      'hero.tagline1': '', 'hero.tagline2': 'Crêpes', 'hero.tagline3': ' françaises authentiques. Food stall & brunch café.',
+      'hero.tagline1': 'Authentiques crêpes françaises', 'hero.tagline2': '', 'hero.tagline3': '. Food stall & brunch café.', // nothing in italics in French
       'hero.street': 'Food Stall', 'hero.streetSub': 'Marchés, événements & traiteur', 'hero.cta': 'Découvrir',
       'hero.streetAlt': 'Simon prépare des crêpes à son stand',
       'hero.ouioui': 'Oui, Oui!', 'hero.ouiouiSub': 'Brunch café à Fabriek59 · tous les dimanches 9h30 – 17h30',
