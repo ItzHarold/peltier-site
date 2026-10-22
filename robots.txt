@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://peltier013.nl/sitemap.xml
