@@ -385,15 +385,9 @@ section { scroll-margin-top: calc(var(--top-h) + 3px); }
   border-radius: 49% 51% 50% 50% / 51% 49% 51% 49%; /* a slightly hand-poured edge */
 }
 .front { background-color: #F7E9BE; animation: batter 3.4s linear infinite; }
-.front::after { /* golden colour and the first light spots, fading in while it cooks */
+.front::after { /* golden colour, darker towards the edge, fading in while it cooks */
   content: ''; position: absolute; inset: 0; border-radius: inherit; opacity: 0; animation: cooked 3.4s linear infinite;
-  background:
-    radial-gradient(circle at 30% 34%, rgba(168, 108, 46, .4) 0 4%, transparent 6.5%),
-    radial-gradient(circle at 64% 26%, rgba(168, 108, 46, .35) 0 3%, transparent 5.5%),
-    radial-gradient(circle at 72% 62%, rgba(168, 108, 46, .4) 0 4.5%, transparent 7%),
-    radial-gradient(circle at 38% 72%, rgba(168, 108, 46, .35) 0 4%, transparent 6.5%),
-    radial-gradient(circle at 52% 50%, rgba(168, 108, 46, .3) 0 2.5%, transparent 5%),
-    radial-gradient(circle at 50% 50%, rgba(232, 191, 106, .35) 0%, rgba(214, 160, 70, .9) 100%);
+  background: radial-gradient(circle at 50% 50%, rgba(232, 191, 106, .35) 0%, rgba(214, 160, 70, .9) 100%);
 }
 .rozell { /* the T-shaped spreader, circling while the batter spreads */
   position: absolute; left: 50%; top: 50%; width: 74px; height: 5px; margin-top: -2px; border-radius: 3px;
