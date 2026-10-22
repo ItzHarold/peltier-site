@@ -33,7 +33,7 @@
       'about.p3': 'In september 2024 begon ik een kleine crêpeskraam op de markt van het Koningsplein in Tilburg. Na de enorme steun van de lokale community wist ik dat ik deze droom verder wilde najagen. Ik stond er elke week en stopte mijn hart in iedere crêpe.',
       'about.p4': 'Van het een kwam het ander. Ik ging evenementen, cateringklussen en markten door heel Brabant doen. De familie groeide een beetje, en in september 2026, na 9 maanden verbouwen, openden we een eigen plek. We verwelkomen je nu graag bij Oui, Oui!, de treinwagon van Fabriek59.',
       'contact.kicker': 'Contact', 'contact.title': 'Een vraag, een reservering of een boeking?',
-      'contact.text': 'Festival, bruiloft, verjaardag, bedrijfsborrel of B2B: wij brengen de authentieke Franse ervaring, op maat van jouw evenement. Neem contact op via het kanaal dat jij het fijnst vindt.',
+      'contact.text': 'Festival, bruiloft, verjaardag, bedrijfsborrel of B2B: wij brengen de authentieke Franse ervaring, op maat van jouw evenement.\nNeem contact op via het kanaal dat jij het fijnst vindt.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
       'place.reviews': 'Google-reviews', 'place.photo': 'Foto via Google Maps',
       'foot.tag': 'Food stall & brunchcafé', 'foot.contact': 'Contact', 'foot.follow': 'Volg ons'
@@ -69,7 +69,7 @@
       'about.p3': 'In September 2024, I started a small crêpes stand on the Koningsplein Market of Tilburg. After receiving immense support from the local community, I knew I wanted to chase this dream further. I consistently attended the market and put my heart into every single crêpe.',
       'about.p4': 'One thing led to another. I started joining events, catering gigs, and markets across Brabant. The family grew a little bigger, and in September 2026, after 9 months of renovation, we opened a place of our own. We are now happy to welcome you at Oui, Oui!, the train wagon of Fabriek59.',
       'contact.kicker': 'Contact', 'contact.title': 'A question, a reservation, or a booking?',
-      'contact.text': 'Festival, wedding, birthday, company gathering or B2B, we bring you the authentic French experience, tailored to your event. Contact us via your preferred channel.',
+      'contact.text': 'Festival, wedding, birthday, company gathering or B2B, we bring you the authentic French experience, tailored to your event.\nContact us via your preferred channel.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
       'place.reviews': 'Google reviews', 'place.photo': 'Photo via Google Maps',
       'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Follow us'
@@ -105,7 +105,7 @@
       'about.p3': 'En septembre 2024, j’ai lancé un petit stand de crêpes sur le marché du Koningsplein à Tilburg. Porté par l’immense soutien de la communauté locale, j’ai su que je voulais poursuivre ce rêve. J’ai tenu le marché chaque semaine et mis tout mon cœur dans chaque crêpe.',
       'about.p4': 'De fil en aiguille, j’ai rejoint des événements, des prestations traiteur et des marchés dans tout le Brabant. La famille s’est un peu agrandie et, en septembre 2026, après 9 mois de rénovation, nous avons ouvert notre propre adresse. Nous sommes heureux de vous accueillir à Oui, Oui!, le wagon de Fabriek59.',
       'contact.kicker': 'Contact', 'contact.title': 'Une question, une réservation ou une prestation ?',
-      'contact.text': 'Festival, mariage, anniversaire, événement d’entreprise ou B2B : nous vous apportons l’authentique expérience française, adaptée à votre événement. Contactez-nous par le canal de votre choix.',
+      'contact.text': 'Festival, mariage, anniversaire, événement d’entreprise ou B2B : nous vous apportons l’authentique expérience française, adaptée à votre événement.\nContactez-nous par le canal de votre choix.',
       'contact.wa': 'WhatsApp Simon', 'contact.mail': 'E-mail',
       'place.reviews': 'avis Google', 'place.photo': 'Photo via Google Maps',
       'foot.tag': 'Food stall & brunch café', 'foot.contact': 'Contact', 'foot.follow': 'Suivez-nous'
