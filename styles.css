@@ -110,7 +110,7 @@ body.scrolled .top { box-shadow: 0 6px 24px rgba(120, 48, 49, .12); }
 .menu-tools { display: flex; align-items: center; gap: .75rem; }
 .burger {
   margin-left: auto; display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
-  width: 44px; height: 44px; padding: 0 9px; border: 0; border-radius: 50%; background: var(--white); cursor: pointer;
+  width: 44px; height: 44px; padding: 0 9px; border: 0; border-radius: 50%; background: transparent; cursor: pointer;
 }
 .burger span { display: block; height: 3px; border-radius: 3px; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
 body.nav-open .burger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
