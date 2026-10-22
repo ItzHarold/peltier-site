@@ -54,6 +54,7 @@ address { font-style: normal; }
 
 .wrap { width: min(var(--wrap), 100% - 2 * var(--gutter)); margin-inline: auto; }
 .kicker { font-weight: 700; color: var(--wine); text-transform: uppercase; letter-spacing: .08em; font-size: .9rem; margin: 0 0 .35rem; }
+.kicker-name { text-transform: none; } /* "Oui, Oui!" keeps its own casing */
 
 .skip {
   position: absolute; left: 1rem; top: -4rem; z-index: 100;
