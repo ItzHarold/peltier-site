@@ -360,6 +360,21 @@
     });
   }
 
+  /* Vercel Web Analytics: page views come from the script tag in index.html; on a one-page site the
+     clicks are what tell something, so the ones that matter are sent as events (with the language). */
+  function initAnalytics() {
+    const EVENTS = [
+      ['a[href*="wa.me"]', 'whatsapp'], ['a[href^="mailto:"]', 'email'], ['#brunch-menu', 'brunch_menu'],
+      ['a[href*="maps.app.goo.gl"], a[href*="google.com/maps"]', 'directions'], ['a.btn[href="#contact"]', 'catering'],
+      ['.lang button', 'language'], ['a[href*="instagram.com"], a[href*="linkedin.com"]', 'social']
+    ];
+    document.addEventListener('click', function (e) {
+      const hit = EVENTS.find(function (p) { return e.target.closest(p[0]); });
+      const el = hit && e.target.closest(hit[0]);
+      if (el && window.va) window.va('event', { name: hit[1], data: { lang: el.dataset.lang || lang } });
+    });
+  }
+
   /* Mobile action dock: hidden on the landing screen, slides in once it has scrolled away */
   function initDock() {
     const trigger = document.querySelector('.hero');
@@ -390,6 +405,7 @@
     initStage();
     renderPlace();
     initLoader(); // last: it waits for what the two above started
+    initAnalytics();
     loadNext();
   });
 })();
