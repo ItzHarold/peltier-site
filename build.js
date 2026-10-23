@@ -34,11 +34,13 @@ async function main() {
   }
   await fs.writeFile(path.join(OUT, 'index.html'), html);
 
-  const [logo512, favicon] = await Promise.all([fs.readFile('assets/logo-512x512.png'), fs.readFile('assets/logo-32x32-bg.png')]);
+  const logo512 = await fs.readFile('assets/logo-512x512.png');
   const avatar = await fs.readFile('assets/about-simon.webp'); // Simon with a crêpe (photo from Harold), full size
 
   await fs.writeFile(path.join(IMG, 'about-simon.webp'), avatar);
-  await fs.writeFile(path.join(IMG, 'favicon-32.png'), favicon);
+  // Tab icon: the mark (hand, rozell, crêpe) cut from the logo, readable at 16-32px. Served from the root, outside the year-long image cache.
+  await fs.copyFile('assets/favicon.ico', path.join(OUT, 'favicon.ico'));
+  await fs.copyFile('assets/favicon-32.png', path.join(OUT, 'favicon-32.png'));
   await fs.writeFile(path.join(IMG, 'logo.png'), logo512);
   await sharp(logo512).resize(192, 192).png().toFile(path.join(IMG, 'logo-192.png'));
   await sharp(logo512).resize(180, 180).png().toFile(path.join(IMG, 'apple-touch-icon.png'));

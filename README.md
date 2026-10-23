@@ -22,7 +22,7 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 | `api/agenda.js` + `lib/ics.js` | next three one-off events from Simon's calendar feed (dependency-free iCalendar parser) |
 | `api/place.js` | Google Business listing (photo, rating) through the Places API (New) |
 | `photos/` | the six crêpe photos from the Figma "Crêpes" page (carousel) |
-| `assets/logo-*.png` | the logo (512 for the page, 32 for the favicon) |
+| `assets/logo-512x512.png`, `assets/favicon.ico`, `assets/favicon-32.png` | the logo and the tab icon (the mark cut from it) |
 | `assets/about-simon.webp` | the About portrait, full size |
 | `assets/hero-*.webp` | the two landing photos (wagon at dusk, Simon at the stall), pre-cropped; rename on change (cached a year) |
 | `assets/wagon.webp` | the wagon photo used until the Google listing photo takes over |
