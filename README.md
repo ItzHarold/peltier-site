@@ -30,7 +30,10 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 
 ## Short links
 
-`/review` → the Google review form of the Oui, Oui! listing (307 in `vercel.json`, so the target can change later). Printed on the NFC review card.
+Google review forms, 307s in `vercel.json` (so a target can change later), for the NFC review cards:
+
+- `/review` and `/review/wagon` → the "Oui, Oui! - by Peltier Crêpes & Galettes" listing (the wagon)
+- `/review/events` → the "Peltier Crêpes & Galettes - Zaterdag Markt" listing (food stall, markets, events)
 
 ## Environment variables (Vercel → Settings → Environment Variables)
 

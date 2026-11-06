@@ -1,6 +1,8 @@
 {
   "redirects": [
-    { "source": "/review", "destination": "https://search.google.com/local/writereview?placeid=ChIJgeFvZs2VxkcR-PEg1bQv13U", "permanent": false }
+    { "source": "/review", "destination": "https://search.google.com/local/writereview?placeid=ChIJgeFvZs2VxkcR-PEg1bQv13U", "permanent": false },
+    { "source": "/review/wagon", "destination": "https://search.google.com/local/writereview?placeid=ChIJgeFvZs2VxkcR-PEg1bQv13U", "permanent": false },
+    { "source": "/review/events", "destination": "https://search.google.com/local/writereview?placeid=ChIJa7DeByW_xkcRvib_dEZ6Tmk", "permanent": false }
   ],
   "headers": [
     { "source": "/images/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
