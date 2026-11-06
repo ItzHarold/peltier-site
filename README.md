@@ -28,6 +28,10 @@ Preview `public/` with any static server; the functions live in `api/` (Vercel r
 | `assets/wagon.webp` | the wagon photo used until the Google listing photo takes over |
 | `menu/` | `oui-oui-en.pdf` + `oui-oui-nl.pdf` (the brunch menu, served by language; French gets English); drop `street-food.pdf` here and the Food Stall "Check the menu" button appears |
 
+## Short links
+
+`/review` → the Google review form of the Oui, Oui! listing (307 in `vercel.json`, so the target can change later). Printed on the NFC review card.
+
 ## Environment variables (Vercel → Settings → Environment Variables)
 
 | Name | Purpose |
